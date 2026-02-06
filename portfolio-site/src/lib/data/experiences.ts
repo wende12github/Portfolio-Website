@@ -1,0 +1,48 @@
+import { Experience } from '@/types';
+
+export const EXPERIENCES: Experience[] = [
+  {
+    id: 'aastu-techfest-2025',
+    title: '2nd Place Winner @ 2025 AASTU TechFest Hackathon',
+    organization: 'AASTU TechFest',
+    description: 'Led a talented team of developers to the finals, earning 2nd place for all based Stack. Managed project scope, coordinated tasks, and ensured timely delivery as Team Leader & Project Manager.',
+    date: 'May 2025',
+    icon: 'FaTrophy',
+    iconColor: 'text-yellow-400',
+    bgColor: 'bg-yellow-900/30',
+    type: 'achievement',
+  },
+  {
+    id: 'a2sv-hackathon-2024',
+    title: 'Team Lead @ A2SV AI African Hackathon',
+    organization: 'A2SV (Africa to Silicon Valley)',
+    description: 'Quarterfinalist - Led a team to develop an AI solution for African challenges. Built an AI Sign Language Translator to bridge communication gaps.',
+    date: '2024',
+    icon: 'FaTrophy',
+    iconColor: 'text-blue-400',
+    bgColor: 'bg-blue-900/30',
+    type: 'achievement',
+  },
+  {
+    id: 'aastu-techfest-2024',
+    title: 'Mobile Developer @ AASTU TechFest',
+    organization: 'AASTU TechFest',
+    description: '2nd place in Flutter category - Developed a mobile app with my team, demonstrating strong Flutter development and teamwork skills.',
+    date: 'April 2024',
+    icon: 'FaMedal',
+    iconColor: 'text-purple-400',
+    bgColor: 'bg-purple-900/30',
+    type: 'achievement',
+  },
+  {
+    id: 'aastu-student',
+    title: 'Software Engineering Student @ AASTU',
+    organization: 'Addis Ababa Science and Technology University',
+    description: 'Participated in multiple individual and group projects, hackathons, and tech events. Continuously learning and building practical skills in software development.',
+    date: '2023 - Present',
+    icon: 'FaGraduationCap',
+    iconColor: 'text-green-400',
+    bgColor: 'bg-green-900/30',
+    type: 'education',
+  },
+];
