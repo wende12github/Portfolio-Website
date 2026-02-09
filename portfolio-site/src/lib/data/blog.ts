@@ -11,6 +11,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '8 min read',
     tags: ['Machine Learning', 'React Native', 'Flask', 'Accessibility'],
     author: 'Wendmagegn Tajura',
+    category: 'AI/ML'
   },
   {
     id: '2',
@@ -22,6 +23,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '6 min read',
     tags: ['Leadership', 'Hackathon', 'Team Management', 'Personal Growth'],
     author: 'Wendmagegn Tajura',
+    category: 'Career'
   },
   {
     id: '3',
@@ -33,6 +35,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '10 min read',
     tags: ['Django', 'REST API', 'Backend', 'Python'],
     author: 'Wendmagegn Tajura',
+    category: 'Backend'
   },
   {
     id: '4',
@@ -44,6 +47,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '7 min read',
     tags: ['Flutter', 'React Native', 'Mobile Development', 'Comparison'],
     author: 'Wendmagegn Tajura',
+    category: 'Mobile'
   },
 ];
 
