@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Icon, Loader2, MessageCircle, Send, Smartphone } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
 import { useState } from "react";
+import type { ChangeEvent, SyntheticEvent } from "react";
 import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 
@@ -19,7 +20,7 @@ export function ContactSection() {
     });
     const [status, setStatus] = useState('idle');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus('loading');
 
@@ -55,7 +56,7 @@ export function ContactSection() {
         }
     };
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormState(prev => ({
             ...prev,
             [e.target.name]: e.target.value
