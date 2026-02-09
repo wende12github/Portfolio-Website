@@ -8,7 +8,7 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   featured: boolean;
-  category: 'mobile' | 'web' | 'backend' | 'ai-ml' | 'game';
+  category: 'mobile' | 'web' | 'backend' | 'ai-ml'| 'frontend' | 'fullstack';
   year: string;
   challenges?: string[];
   solutions?: string[];
@@ -28,6 +28,17 @@ export interface SkillCategory {
   iconColor: string;
   bgColor: string;
   skills: Skill[];
+}
+
+export interface Certificate {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  description?: string;
+  image: string;
+  credentialUrl: string;
+  featured: boolean;
 }
 
 export interface Experience {
@@ -60,6 +71,7 @@ export interface BlogPost {
   content?: string;
   coverImage: string;
   date: string;
+  category?: string;
   readTime: string;
   tags: string[];
   author: string;
@@ -71,6 +83,7 @@ export interface SocialLink {
   name: string;
   url: string;
   icon: React.ComponentType<any>;
+  color: string;
 }
 
 export interface NavItem {
