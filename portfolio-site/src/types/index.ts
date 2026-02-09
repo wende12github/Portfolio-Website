@@ -39,6 +39,7 @@ export interface Certificate {
   image: string;
   credentialUrl: string;
   featured: boolean;
+  featuredLabel?: string;
 }
 
 export interface Experience {

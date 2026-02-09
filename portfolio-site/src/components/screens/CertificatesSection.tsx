@@ -7,6 +7,19 @@ import { Award, Building2, Calendar, ExternalLink, X } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
 import { useState } from "react";
 
+type FeaturedBadgeProps = {
+    label?: string;
+};
+
+function FeaturedBadge({ label = "Winner" }: FeaturedBadgeProps) {
+    return (
+        <div className="absolute top-4 right-4 z-10 flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-semibold">
+            <Award className="w-3 h-3" />
+            {label}
+        </div>
+    );
+}
+
 
 export function CertificatesSection() {
     const { isDark } = useIsDark();
@@ -69,10 +82,7 @@ export function CertificatesSection() {
                         >
                             {/* Featured Badge */}
                             {cert.featured && (
-                                <div className="absolute top-4 right-4 z-10 flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-semibold">
-                                    <Award className="w-3 h-3" />
-                                    Winner
-                                </div>
+                                <FeaturedBadge label={cert.featuredLabel ?? "Winner"} />
                             )}
 
                             {/* Image */}
@@ -162,7 +172,7 @@ export function CertificatesSection() {
                                     {selectedCert.featured && (
                                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-semibold mb-4">
                                             <Award className="w-3 h-3" />
-                                            Hackathon 2nd place Winner
+                                            {selectedCert.featuredLabel ?? "Winner"}
                                         </div>
                                     )}
 

@@ -12,6 +12,7 @@ export const CERTIFICATES: Certificate [] = [
         image: 'images/certificates/2025-hackathon.jpg',
         credentialUrl: 'https://drive.google.com/file/d/1ZgUyw95TUyEeYbcypafYBVni244zvpnO/view?usp=sharing',
         featured: true,
+        featuredLabel: '2nd Place Winner'
     },
     {
         id: '2',
@@ -31,7 +32,9 @@ export const CERTIFICATES: Certificate [] = [
         description: 'Certification demonstrating proficiency in building and training Sign Language Translator using TensorFlow and React Native with Flask Backend.',
         image: 'images/certificates/a2sv-hackathon.png',
         credentialUrl: 'https://drive.google.com/file/d/12Acxzd7dyRIePPafugP5jUuIEQ_b4Far/view?usp=sharing',
-        featured: false
+        featured: false,
+        featuredLabel: 'Qurterfinalist'
+
     },
     {
         id: '4',
