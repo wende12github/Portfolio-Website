@@ -98,11 +98,11 @@ export function HeroSection() {
                 ))} */}
 
                 {/* Grid Pattern */}
-                <div className={`absolute inset-0 ${
+                {/* <div className={`absolute inset-0 ${
                     isDark 
                         ? 'bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)]'
                         : 'bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)]'
-                } bg-[size:50px_50px]`} />
+                } bg-[size:50px_50px]`} /> */}
 
                 {/* Shooting Stars */}
                 {[...Array(8)].map((_, i) => (
