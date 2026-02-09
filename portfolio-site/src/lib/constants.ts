@@ -1,5 +1,5 @@
 import { NavItem, PersonalInfo, SocialLink } from '@/types';
-import { Linkedin, Github, Send, Instagram } from 'lucide-react';
+import { Linkedin, Github, Send, Instagram, Mail } from 'lucide-react';
 
 // NAVIGATION ITEMS
 export const NAV_ITEMS: NavItem[] = [
@@ -7,8 +7,8 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Certificates', href: '#Certificates' },
-  { label: 'Experience', href: '#experience' },
+  { label: 'Certificates', href: '#certificates' },
+  { label: 'Experience', href: '#experiences' },
   { label: 'Blog', href: '#blog' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -19,22 +19,31 @@ export const SOCIAL_LINKS: SocialLink[] = [
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/in/wendmagegn-tajura/',
     icon: Linkedin,
+    color: 'hover:text-blue-600',
   },
   {
     name: 'GitHub',
     url: 'https://github.com/wende12github',
     icon: Github,
+    color: 'hover:text-gray-900 dark:hover:text-white',
   },
   {
     name: 'Telegram',
     url: 'https://t.me/Mark_9412',
     icon: Send,
+    color: 'hover:text-green-800',
   },
   {
     name: 'Instagram',
     url: 'https://www.instagram.com/wende_9412/',
     icon: Instagram,
+    color: 'hover:text-purple-600'
   },
+  // {
+  //   name: 'Email',
+  //   url: 'mailto:wendmagegn9412@gmail.com',
+  //   icon: Mail,
+  // },
 ];
 
 // PERSONAL INFO
@@ -63,23 +72,31 @@ export const HERO_SKILLS: string[] = [
 // ACHIEVEMENTS
 export const ACHIEVEMENTS = [
   {
-    emoji: '🥈',
+    icon: 'Trophy',
     title: '2nd place in Flutter Mobile app',
     event: '2024 AASTU TechFest Hackathon',
+    subtitle: 'UI Team Leader',
     highlight: true,
   },
   {
-    emoji: '🔥',
+    icon: 'Rocket',
     title: 'Quarterfinalist',
     event: '2024 A2SV African AI Hackathon',
-    subtitle: '(as a Team Leader)',
+    subtitle: 'Project Manager',
     highlight: true,
   },
   {
-    emoji: '🥈',
+    icon: 'Trophy',
     title: '2nd place Winner',
     event: '2025 AASTU TechFest Hackathon',
-    subtitle: '(as a Team Leader)',
+    subtitle: 'Project Manager and Team Leader',
+    highlight: true,
+  },
+  {
+    icon: 'Award',
+    title: '2nd place Winner',
+    event: '2025 AASTU TechFest Hackathon',
+    subtitle: 'Backend Dev.',
     highlight: true,
   },
 ];
