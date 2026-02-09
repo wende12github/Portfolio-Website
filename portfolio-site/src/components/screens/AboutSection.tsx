@@ -3,7 +3,7 @@
 import { ACHIEVEMENTS, FADE_IN_UP, PERSONAL_INFO } from "@/lib/constants";
 import { motion } from "framer-motion";
 import { Award, GraduationCap, Heart, Rocket, Trophy } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useIsDark } from "@/hooks/useIsDark";
 import Image from 'next/image';
 import { FaDownload } from "react-icons/fa";
 
@@ -16,8 +16,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export function AboutSection() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark" || (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const { isDark } = useIsDark();
 
     return (
         <section id="about" className={`py-24 sm:py-20 relative overflow-hidden ${

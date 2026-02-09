@@ -3,7 +3,7 @@
 import { BLOG_POSTS } from "@/lib/data/blog";
 import { motion } from "framer-motion";
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useIsDark } from "@/hooks/useIsDark";
 
 
 const categoryColors = {
@@ -15,8 +15,7 @@ const categoryColors = {
 };
 
 export function BlogSection() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark" || (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const { isDark } = useIsDark();
     
     return(
         <section id="blog" 

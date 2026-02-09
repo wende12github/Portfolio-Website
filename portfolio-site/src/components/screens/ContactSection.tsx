@@ -3,14 +3,13 @@
 import { FADE_IN_UP, PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Icon, Loader2, MessageCircle, Send, Smartphone } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useIsDark } from "@/hooks/useIsDark";
 import { useState } from "react";
 import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 
 export function ContactSection() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark" || (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const { isDark } = useIsDark();
     
     const [formState, setFormState] = useState({
         name: '',

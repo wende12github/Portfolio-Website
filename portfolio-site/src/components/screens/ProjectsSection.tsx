@@ -3,7 +3,7 @@
 import { FEATURED_PROJECTS } from "@/lib/data/projects";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Code2, ExternalLink, Github, Sparkles } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useIsDark } from "@/hooks/useIsDark";
 import { useState } from "react";
 
 
@@ -18,8 +18,7 @@ const categories = [
 
 
 export function ProjectsSection() {
-    const { theme } = useTheme();
-        const isDark = theme === "dark" || (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const { isDark } = useIsDark();
     
     const [activeCategory, setActiveCategory] = useState('all');
     const [hoveredProject, setHoveredProject] = useState('');

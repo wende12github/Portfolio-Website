@@ -3,7 +3,7 @@
 import { FADE_IN_UP } from "@/lib/constants";
 import { EXPERIENCES } from "@/lib/data/experiences";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
+import { useIsDark } from "@/hooks/useIsDark";
 import { FaGraduationCap, FaMedal, FaQuoteLeft, FaTrophy } from "react-icons/fa";
 
 
@@ -15,8 +15,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export function ExperienceSection() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark" || (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const { isDark } = useIsDark();
     
     return(
         <section id="experiences" 

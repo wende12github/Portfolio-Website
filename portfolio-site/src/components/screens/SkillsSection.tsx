@@ -3,7 +3,7 @@
 import { SKILLS } from "@/lib/data/skills";
 import { AnimatePresence, motion } from "framer-motion";
 import { Brain, Database, GitBranch, Palette, Server, Smartphone, Users } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useIsDark } from "@/hooks/useIsDark";
 import { useMemo, useState } from "react";
 
 
@@ -31,8 +31,7 @@ const levelToPercent: Record<
 };
 
 export function SkillsSection(){
-    const { theme } = useTheme();
-    const isDark = theme === "dark" || (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const { isDark } = useIsDark();
 
     const [activeCategory, setActiveCategory] = useState('frontend');
 

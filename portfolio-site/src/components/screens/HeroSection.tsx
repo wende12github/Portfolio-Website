@@ -3,7 +3,7 @@
 import { FADE_IN_UP, HERO_SKILLS, PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowRight, Award, Code2, Heart, Sparkles, Trophy } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useIsDark } from "@/hooks/useIsDark";
 import { PROXY_FILENAME } from "next/dist/lib/constants";
 import { useEffect, useState } from "react";
 
@@ -13,8 +13,7 @@ const deletingSpeed = 50;
 const pauseDuration = 1800;
 
 export function HeroSection() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark" || (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const { isDark } = useIsDark();
 
     const [displayText, setDisplayedText] = useState("");
     const [currentRoleIndex, setCurrentRoleIndex] = useState(0);

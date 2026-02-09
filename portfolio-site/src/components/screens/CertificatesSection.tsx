@@ -4,13 +4,12 @@ import { CERTIFICATES } from "@/lib/data/certificates";
 import { Certificate } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { Award, Building2, Calendar, ExternalLink, X } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useIsDark } from "@/hooks/useIsDark";
 import { useState } from "react";
 
 
 export function CertificatesSection() {
-    const { theme } = useTheme();
-    const isDark = theme === "dark" || (theme === "system" && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const { isDark } = useIsDark();
 
     const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
 

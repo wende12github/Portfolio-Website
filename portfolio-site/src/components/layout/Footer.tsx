@@ -3,18 +3,11 @@
 import { NAV_ITEMS, SOCIAL_LINKS } from "@/lib/constants";
 import { motion } from "framer-motion";
 import { ArrowUp, Heart } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useIsDark } from "@/hooks/useIsDark";
 
 
 export function Footer() {
-    const { theme } = useTheme();
-
-    // isDark: true if dark mode is active (handles "system" preference too)
-    const isDark = 
-        theme === "dark" || 
-        (theme === "system" && 
-            typeof window !== "undefined" && 
-            window.matchMedia("(prefers-color-scheme: dark)").matches);
+    const { isDark } = useIsDark();
 
     // Smooth scroll to top function
     const scrollToTop = () => {

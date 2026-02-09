@@ -4,6 +4,7 @@ import { NAV_ITEMS } from "@/lib/constants";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useIsDark } from "@/hooks/useIsDark";
 import { useEffect, useState } from "react";
 
 export function Navbar() {
@@ -12,9 +13,7 @@ export function Navbar() {
     const [activeSection, setActiveSection] = useState("home");
 
     const { theme, setTheme } = useTheme();
-
-    // theme can be: "light" | "dark" | "system"
-    const isDark = theme === "dark" || (theme === "system" && window?.matchMedia("(prefers-color-scheme: dark)").matches);
+  const { isDark } = useIsDark();
 
     // Scroller handler
     useEffect(() => {
