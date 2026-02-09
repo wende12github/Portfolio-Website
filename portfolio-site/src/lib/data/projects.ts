@@ -6,11 +6,12 @@ export const PROJECTS: Project[] = [
     title: 'Guadaye App',
     shortDescription: 'Home rental platform built with Flutter that connects landlords with tenants.',
     fullDescription: 'A comprehensive home rental platform designed specifically for the Ethiopian market. The app facilitates seamless connections between landlords and tenants, featuring property listings, search functionality, and direct communication channels.',
-    image: '/images/projects/guadaye-app.jpg',
+    image: '/images/projects/guadaye-app.png',
     technologies: ['Flutter', 'Firebase', 'Dart'],
     githubUrl: 'https://github.com/wende12github/Guadaye_RentHub',
     featured: true,
     category: 'mobile',
+    liveUrl: '#',
     year: '2025',
     challenges: [
       'Building a user-friendly interface for property listings',
@@ -61,8 +62,9 @@ export const PROJECTS: Project[] = [
     image: '/images/projects/timebank.png',
     technologies: ['React', 'Tailwind CSS', 'Django', 'DRF', 'Django Channels', 'PostgreSQL', 'Vite'],
     githubUrl: 'https://github.com/wende12github/Silent-Coders',
+    liveUrl: '#',
     featured: true,
-    category: 'web',
+    category: 'fullstack',
     year: '2025',
     challenges: [
       'Implementing real-time messaging with WebSockets',
@@ -108,8 +110,8 @@ export const PROJECTS: Project[] = [
     technologies: ['Java', 'Swing'],
     githubUrl: 'https://github.com/wende12github/EthiopianCheckers-DAMA',
     featured: false,
-    category: 'game',
-    year: '2023',
+    category: 'mobile',
+    year: '2024',
   },
   {
     id: 'bookstore-website',
@@ -120,8 +122,8 @@ export const PROJECTS: Project[] = [
     technologies: ['PHP', 'Tailwind CSS', 'JavaScript', 'MySQL'],
     githubUrl: 'https://github.com/wende12github/Online-BookStore-Website/tree/development',
     featured: false,
-    category: 'web',
-    year: '2023',
+    category: 'frontend',
+    year: '2025',
   },
   {
     id: 'space-invader-game',
@@ -132,8 +134,8 @@ export const PROJECTS: Project[] = [
     technologies: ['HTML', 'CSS', 'JavaScript'],
     githubUrl: 'https://github.com/wende12github/Space_Invaders',
     featured: false,
-    category: 'game',
-    year: '2023',
+    category: 'fullstack',
+    year: '2024',
   },
 ];
 
