@@ -23,11 +23,36 @@ export function ContactSection() {
         e.preventDefault();
         setStatus('loading');
 
-        setTimeout(() => {
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formState),
+            });
+
+            if (!response.ok) {
+                let errorMessage = "Failed to send message";
+                try {
+                    const data = await response.json();
+                    if (data?.message) {
+                        errorMessage = data.message;
+                    }
+                } catch (parseError) {
+                    // ignore JSON parse errors
+                }
+                throw new Error(errorMessage);
+            }
+
             setStatus('success');
             setFormState({name: '', email: '', subject: '', message: ''});
             setTimeout(() => setStatus('idle'), 3000);
-        }, 1500);
+        } catch (error) {
+            console.error("Contact form error:", error);
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 3000);
+        }
     };
 
     const handleChange = (e) => {
@@ -311,6 +336,11 @@ export function ContactSection() {
                                         <>
                                             <CheckCircle className="w-5 h-5" />
                                             Message Sent!
+                                        </>
+                                    ) : status === 'error' ? (
+                                        <>
+                                            <Send className="w-5 h-5" />
+                                            Failed to Send
                                         </>
                                     ) : (
                                         <>
