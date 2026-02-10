@@ -19,7 +19,7 @@ export function Footer() {
     // Main footer container with padding and background color based on theme
         <footer
         className={`relative pt-16 pb-8 ${
-            isDark ? "bg-gray-900" : "bg-white"
+            isDark ? "bg-gray-900" : "bg-gray-100"
         }`}
         >
         {/* Decorative top gradient line */}
@@ -39,19 +39,22 @@ export function Footer() {
                 className="inline-flex items-center gap-3 mb-4"
                 whileHover={{ scale: 1.05 }}
                 >
-                <Image
-                    src="/images/w-logo.png"
-                    alt="Logo"
-                    width={60}
-                    height={60}
-                    className="rounded-lg"
-                />
-                <span className={`text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
-                    WEND
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-purple-600">
-                    MAGEGN
+                    <div className="p-1 bg-gray-900 rounded-full">
+
+                        <Image
+                            src="/images/w-logo.png"
+                            alt="Logo"
+                            width={60}
+                            height={60}
+                            className="rounded-lg"
+                        />
+                    </div>
+                    <span className={`text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
+                        WEND
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-purple-600">
+                        MAGEGN
+                        </span>
                     </span>
-                </span>
                 </motion.a>
 
                 {/* Short bio / tagline */}

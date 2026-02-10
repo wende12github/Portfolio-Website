@@ -56,11 +56,11 @@ export function Navbar() {
         scrolled
           ? isDark
             ? "bg-gray-900/90 backdrop-blur-xl shadow-2xl shadow-purple-500/5"
-            : "bg-white/90 backdrop-blur-xl shadow-2xl shadow-gray-200/50"
+            : "bg-white/90 backdrop-blur-xl shadow-2xl shadow-purple-200/50"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto bg-gray-900 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo + Name */}
           <motion.a
@@ -110,7 +110,7 @@ export function Navbar() {
                     ? "text-blue-500"
                     : isDark
                       ? "text-gray-300 hover:text-blue-400"
-                      : "text-gray-600 hover:text-blue-400"
+                      : "text-gray-300 hover:text-blue-400"
                 }`}
               >
                 {item.label}
