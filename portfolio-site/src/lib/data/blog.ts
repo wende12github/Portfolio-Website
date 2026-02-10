@@ -30,7 +30,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'building-scalable-apis-django-drf',
     title: 'Building Scalable APIs with Django REST Framework',
     excerpt: 'Learn how to architect and build production-ready APIs using Django REST Framework with best practices for performance and security.',
-    coverImage: '/images/blog/django-api.jpg',
+    coverImage: '/images/blog/timebank-how.png',
     date: '2025-01-20',
     readTime: '10 min read',
     tags: ['Django', 'REST API', 'Backend', 'Python'],

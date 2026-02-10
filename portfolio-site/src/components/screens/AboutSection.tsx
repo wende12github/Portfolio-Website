@@ -118,15 +118,15 @@ export function AboutSection() {
                             <span className="text-violet-500 font-semibold">
                                 Addis Ababa Science and Technology University (AASTU)
                             </span>
-                            . As a <span className="font-semibold">2025 AASTU Tech Fest Hackathon Winner</span>,
+                            . As a <span className="font-semibold">2025 AASTU Tech Fest 2nd place Hackathon Winner</span>,
                             I've proven my ability to build innovative solutions under pressure.
                         </p>
 
                         <p className={`text-lg leading-relaxed mb-8 ${
                             isDark ? 'text-gray-300' : 'text-gray-700'
                         }`}>
-                            As a <span className="text-purple-500 font-semibold">team leader</span> and{' '}
-                            <span className="text-pink-500 font-semibold">code enthusiast</span>, I'm always 
+                            As a <span className="text-blue-500 font-semibold">Team Leader</span> and{' '}
+                            <span className="text-violet-500 font-semibold">Code Enthusiast</span>, I'm always 
                             hungry to build smarter tech. My expertise spans frontend, backend, mobile development,
                             and AI-powered solutions.
                         </p>

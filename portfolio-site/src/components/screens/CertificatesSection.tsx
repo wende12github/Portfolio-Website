@@ -3,18 +3,19 @@
 import { CERTIFICATES } from "@/lib/data/certificates";
 import { Certificate } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
-import { Award, Building2, Calendar, ExternalLink, X } from "lucide-react";
+import { Building2, Calendar, ExternalLink, Trophy, X } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
 import { useState } from "react";
 
 type FeaturedBadgeProps = {
     label?: string;
+    className?: string;
 };
 
-function FeaturedBadge({ label = "Winner" }: FeaturedBadgeProps) {
+function FeaturedBadge({ label = "Winner", className }: FeaturedBadgeProps) {
     return (
-        <div className="absolute top-4 right-4 z-10 flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-semibold">
-            <Award className="w-3 h-3" />
+        <div className={`flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-semibold ${className ?? ""}`}>
+            <Trophy className="w-3 h-3" />
             {label}
         </div>
     );
@@ -67,7 +68,11 @@ export function CertificatesSection() {
 
                 {/* Certificates Grid */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {CERTIFICATES.map((cert, index) => (
+                    {CERTIFICATES.map((cert, index) => {
+                        const showFeaturedBadge = Boolean(cert.featured || cert.featuredLabel);
+                        const featuredLabel = cert.featuredLabel ?? "Winner";
+
+                        return (
                         <motion.div
                             key={cert.id}
                             initial={{ opacity: 0, y: 30 }}
@@ -78,11 +83,11 @@ export function CertificatesSection() {
                             onClick={() => setSelectedCert(cert)}
                             className={`relative group cursor-pointer rounded-2xl overflow-hidden ${
                                 isDark ? 'bg-gray-900' : 'bg-white shadow-lg'
-                            } ${cert.featured ? 'ring-2 ring-amber-500/50' : ''}`}
+                            } ${showFeaturedBadge ? 'ring-2 ring-amber-500/50' : ''}`}
                         >
                             {/* Featured Badge */}
-                            {cert.featured && (
-                                <FeaturedBadge label={cert.featuredLabel ?? "Winner"} />
+                            {showFeaturedBadge && (
+                                <FeaturedBadge label={featuredLabel} className="absolute top-4 right-4 z-10" />
                             )}
 
                             {/* Image */}
@@ -104,7 +109,7 @@ export function CertificatesSection() {
                             {/* Content */}
                             <div className="p-6">
                                 <div className="flex items-center gap-2 mb-3">
-                                    <Award className={`w-5 h-5 ${cert.featured ? 'text-amber-500' : 'text-violet-500'}`} />
+                                    <Trophy className={`w-5 h-5 ${cert.featured ? 'text-amber-500' : 'text-violet-500'}`} />
                                     <span className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                                         {cert.date}
                                     </span>
@@ -126,7 +131,8 @@ export function CertificatesSection() {
                                 </motion.span>
                             </div>
                         </motion.div>
-                    ))}
+                        );
+                    })}
                 </div>
 
                 {/* Modal */}
@@ -169,11 +175,11 @@ export function CertificatesSection() {
                                 </div>
 
                                 <div className="p-8">
-                                    {selectedCert.featured && (
-                                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-semibold mb-4">
-                                            <Award className="w-3 h-3" />
-                                            {selectedCert.featuredLabel ?? "Winner"}
-                                        </div>
+                                    {(selectedCert.featured || selectedCert.featuredLabel) && (
+                                        <FeaturedBadge
+                                            label={selectedCert.featuredLabel ?? "Winner"}
+                                            className="mb-4"
+                                        />
                                     )}
 
                                     <h3 className={`text-2xl font-bold mb-4 ${
