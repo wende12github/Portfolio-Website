@@ -73,7 +73,7 @@ export function AboutSection() {
                             
                             {/* Profile Placeholder */}
                             <Image
-                                src="/images/wendeprofile.png"
+                                src="/images/wendep.jpg"
                                 alt={PERSONAL_INFO.name}
                                 fill
                                 className="object-cover"
@@ -92,7 +92,7 @@ export function AboutSection() {
                                 transition={{ duration: 5, repeat: Infinity }}
                                 className="absolute bottom-8 left-8 p-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 shadow-lg"
                             >
-                                <Heart className="w-6 h-6 text-white" />
+                                <Award className="w-6 h-6 text-white" />
                             </motion.div>
                         </div>
                     </motion.div>
