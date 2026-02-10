@@ -39,11 +39,12 @@ export const SOCIAL_LINKS: SocialLink[] = [
     icon: Instagram,
     color: 'hover:text-purple-600'
   },
-  // {
-  //   name: 'Email',
-  //   url: 'mailto:wendmagegn9412@gmail.com',
-  //   icon: Mail,
-  // },
+  {
+    name: 'Email',
+    url: 'mailto:wendmagegn9412@gmail.com',
+    color: 'hover:text-blue-600',
+    icon: Mail,
+  },
 ];
 
 // PERSONAL INFO

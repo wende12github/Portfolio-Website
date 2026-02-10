@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Building2, Calendar, ExternalLink, Trophy, X } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
 import { useState } from "react";
+import Image from "next/image";
 
 type FeaturedBadgeProps = {
     label?: string;
@@ -92,12 +93,12 @@ export function CertificatesSection() {
 
                             {/* Image */}
                             <div className="relative h-40 overflow-hidden">
-                                <motion.img
+                                <Image
                                     src={cert.image}
                                     alt={cert.title}
-                                    className="w-full h-full object-cover"
-                                    whileHover={{ scale: 1.1 }}
-                                    transition={{ duration: 0.4 }}
+                                    fill
+                                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                                    className="object-cover transition-transform duration-400 group-hover:scale-110"
                                 />
                                 <div className={`absolute inset-0 bg-gradient-to-t ${
                                     isDark 
@@ -166,11 +167,13 @@ export function CertificatesSection() {
                                     <X className="w-5 h-5 cursor-pointer" />
                                 </button>
 
-                                <div className="h-48 overflow-hidden">
-                                    <img
+                                <div className="relative h-48 overflow-hidden">
+                                    <Image
                                         src={selectedCert.image}
                                         alt={selectedCert.title}
-                                        className="w-full h-full object-cover"
+                                        fill
+                                        sizes="(min-width: 1024px) 512px, 90vw"
+                                        className="object-cover"
                                     />
                                 </div>
 
@@ -209,6 +212,8 @@ export function CertificatesSection() {
 
                                     <motion.a
                                         href={selectedCert.credentialUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
                                         className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-xl font-semibold"
