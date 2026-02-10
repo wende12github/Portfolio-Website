@@ -84,14 +84,14 @@ export function ContactSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <span className="text-violet-500 font-semibold text-sm uppercase tracking-wider">
+                    <span className="text-blue-500 font-semibold text-sm uppercase tracking-wider">
                         Get In Touch
                     </span>
                     <h2 className={`text-4xl sm:text-5xl font-bold mt-4 mb-6 ${
                         isDark ? 'text-white' : 'text-gray-900'
                     }`}>
                         Let's Work{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-purple-600">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
                             Together
                         </span>
                     </h2>
@@ -223,7 +223,7 @@ export function ContactSection() {
                             isDark ? 'bg-gray-900' : 'bg-white shadow-xl'
                         }`}>
                             <div className="flex items-center gap-3 mb-8">
-                                <div className="p-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600">
+                                <div className="p-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600">
                                     <MessageCircle className="w-5 h-5 text-white" />
                                 </div>
                                 <h3 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -325,7 +325,7 @@ export function ContactSection() {
                                     className={`w-full py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-2 transition-all ${
                                         status === 'success'
                                             ? 'bg-green-500'
-                                            : 'bg-gradient-to-r from-violet-600 to-purple-600 hover:shadow-lg hover:shadow-violet-500/25'
+                                            : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:shadow-violet-500/25'
                                     }`}
                                 >
                                     {status === 'loading' ? (
