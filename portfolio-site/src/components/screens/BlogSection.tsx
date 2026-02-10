@@ -6,12 +6,13 @@ import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
 
 
-const categoryColors = {
+const categoryColors: Record<string, string> = {
     'AI/ML': 'from-violet-500 to-purple-500',
     'Mobile': 'from-pink-500 to-rose-500',
     'Career': 'from-amber-500 to-orange-500',
     'Web': 'from-blue-500 to-cyan-500',
-    'Backend': 'from-violet-500 to-cyan-500'
+    'Backend': 'from-violet-500 to-cyan-500',
+    'General': 'from-gray-500 to-slate-600'
 };
 
 export function BlogSection() {
@@ -82,8 +83,8 @@ export function BlogSection() {
                                 }`} />
                                 
                                 {/* Category Badge */}
-                                <div className={`absolute top-4 left-4 px-4 py-1.5 rounded-full text-white text-xs font-semibold bg-gradient-to-r ${categoryColors[post.category]}`}>
-                                    {post.category}
+                                <div className={`absolute top-4 left-4 px-4 py-1.5 rounded-full text-white text-xs font-semibold bg-gradient-to-r ${categoryColors[post.category ?? 'General']}`}>
+                                    {post.category ?? 'General'}
                                 </div>
                             </div>
 
