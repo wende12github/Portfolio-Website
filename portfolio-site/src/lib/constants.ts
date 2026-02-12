@@ -56,7 +56,7 @@ export const PERSONAL_INFO: PersonalInfo = {
   phone: '+251 966061399',
   location: 'Addis Ababa, Ethiopia',
   bio: `I'm a software engineering student at AASTU with a strong passion for tech innovation, collaborative problem-solving, and team-driven development. Whether leading a team through tight deadlines or architecting scalable code, I bring energy, creativity, and resilience to every challenge. My strong suits include team collaboration, project leadership, and delivering quality solutions under pressure. I thrive in challenging environments where I can apply my technical skills to solve real-world problems.`,
-  resumeUrl: 'https://drive.google.com/file/d/13QGa1RT3SkaJBVuGe1trJfMjHsG8LOP9/view?usp=sharing',
+  resumeUrl: 'https://drive.google.com/file/d/1CcoBUi44mjEwlkmfDj3g4BwCGwDWPfLB/view?usp=sharing',
   profileImage: '/images/wendep.jpg',
   socialLinks: SOCIAL_LINKS,
 };
