@@ -5,6 +5,36 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Brain, Database, GitBranch, Palette, Server, Smartphone, Users } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
 import { useMemo, useState } from "react";
+import type { CSSProperties } from "react";
+import {
+    FaHtml5,
+    FaCss3Alt,
+    FaPython,
+    FaPhp,
+    FaJava,
+    FaReact,
+    FaAndroid,
+    FaGitAlt,
+    FaDocker,
+    FaTasks,
+    FaPuzzlePiece,
+    FaComments,
+    FaUserTie,
+    FaHandshake,
+    FaBrain,
+    FaRobot,
+} from "react-icons/fa";
+import {
+    SiNextdotjs,
+    SiTypescript,
+    SiFlutter,
+    SiPostgresql,
+    SiMongodb,
+    SiTensorflow,
+    SiSupabase,
+    SiFirebase,
+    SiCplusplus,
+} from "react-icons/si";
 
 
 // Map string icon names from SkillCategory to real lucide-react components
@@ -19,15 +49,93 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FaUsers: Users,
 };
 
+// Map skill.icon strings from data to real react-icons components
+const skillIconMap: Record<string, React.ComponentType<{ className?: string; style?: CSSProperties }>> = {
+    // Frontend
+    FaHtml5: FaHtml5,
+    CssAlt: FaCss3Alt,
+    NextJs: SiNextdotjs,
+    Ts: SiTypescript,
+    // Backend
+    Python: FaPython,
+    FaPython: FaPython,
+    FaPhp: FaPhp,
+    FaJava: FaJava,
+    // Mobile
+    SiFlutter: SiFlutter,
+    FaReact: FaReact,
+    FaAndroid: FaAndroid,
+    // Databases
+    SiPostgresql: SiPostgresql,
+    MongoDB: SiMongodb,
+    Firebase: SiFirebase,
+    Supabase: SiSupabase,
+    // AI/ML
+    FaBrain: FaBrain,
+    TensorFlow: SiTensorflow,
+    Robot: FaRobot,
+    // Tools & DevOps
+    FaGitAlt: FaGitAlt,
+    GitAlt: FaGitAlt,
+    SiCplusplus: SiCplusplus,
+    FaDocker: FaDocker,
+    // Soft skills
+    FaTasks: FaTasks,
+    FaPuzzlePiece: FaPuzzlePiece,
+    FaComments: FaComments,
+    FaUserTie: FaUserTie,
+    FaHandshake: FaHandshake,
+};
+
+
+// Brand colors by skill icon (hex values)
+const skillBrandColor: Record<string, string> = {
+    // Frontend
+    FaHtml5: "#E34F26",
+    CssAlt: "#1572B6",
+    NextJs: "#000000",
+    Ts: "#3178C6",
+    // Backend
+    Python: "#3776AB",
+    FaPython: "#3776AB",
+    FaPhp: "#777BB4",
+    FaJava: "#E76F00",
+    // Mobile
+    SiFlutter: "#02569B",
+    FaReact: "#61DAFB",
+    FaAndroid: "#3DDC84",
+    // Databases
+    SiPostgresql: "#336791",
+    MongoDB: "#47A248",
+    Firebase: "#FFCA28",
+    Supabase: "#3ECF8E",
+    // AI/ML
+    FaBrain: "#F59E0B",
+    TensorFlow: "#FF6F00",
+    Robot: "#74AA9C",
+    // Tools & DevOps
+    FaGitAlt: "#F1502F",
+    GitAlt: "#F1502F",
+    SiCplusplus: "#00599C",
+    FaDocker: "#2496ED",
+    // Soft skills (generic accent colors)
+    FaTasks: "#22C55E",
+    FaPuzzlePiece: "#3B82F6",
+    FaComments: "#6B7280",
+    FaUserTie: "#10B981",
+    FaHandshake: "#0EA5E9",
+};
+
+
 // Convert textual levels to progress percentages
 const levelToPercent: Record<
-  NonNullable<import("@/types").Skill["level"]>,
-  number
+    NonNullable<import("@/types").Skill["level"]>,
+    number
 > = {
-  beginner: 25,
-  intermediate: 50,
-  advanced: 75,
-  expert: 95,
+    beginner: 25,
+    intermediate: 50,
+    advanced: 75,
+    expert: 95,
 };
 
 export function SkillsSection(){
@@ -143,6 +251,8 @@ export function SkillsSection(){
                             {activeSkills.skills.map((skill, index) => {
                                 const percent =
                                 levelToPercent[skill.level ?? "beginner"];
+                                const SkillIcon = skill.icon ? skillIconMap[skill.icon] : undefined;
+                                const brandColor = skill.icon ? skillBrandColor[skill.icon] : undefined;
 
                                 return (
                                 <motion.div
@@ -151,21 +261,29 @@ export function SkillsSection(){
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.1 }}
                                 >
-                                    <div className="flex justify-between mb-2">
-                                    <span
-                                        className={`font-medium ${
-                                        isDark ? "text-gray-300" : "text-gray-700"
-                                        }`}
-                                    >
-                                        {skill.name}
-                                    </span>
-                                    <span
-                                        className={`text-sm ${
-                                        isDark ? "text-gray-500" : "text-gray-400"
-                                        }`}
-                                    >
-                                        {skill.level}
-                                    </span>
+                                    <div className="flex items-center justify-between mb-2">
+                                        <div className="flex items-center gap-2">
+                                            {SkillIcon && (
+                                                <SkillIcon
+                                                    className="w-5 h-5"
+                                                    style={{ color: brandColor ?? (isDark ? '#8B5CF6' : '#7C3AED') }}
+                                                />
+                                            )}
+                                            <span
+                                                className={`font-medium ${
+                                                    isDark ? "text-gray-300" : "text-gray-700"
+                                                }`}
+                                            >
+                                                {skill.name}
+                                            </span>
+                                        </div>
+                                        <span
+                                            className={`text-sm ${
+                                                isDark ? "text-gray-500" : "text-gray-400"
+                                            }`}
+                                        >
+                                            {skill.level}
+                                        </span>
                                     </div>
                                     <div
                                     className={`h-3 rounded-full overflow-hidden ${
@@ -198,7 +316,7 @@ export function SkillsSection(){
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
+                className="mt-16 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4"
                 >
                     {SKILLS.map((category, index) => {
                         const GridIcon =

@@ -195,15 +195,19 @@ export function HeroSection() {
                                 isDark ? 'text-gray-200' : 'text-gray-600'
                             }`}
                         >
-                            Crafting elegant <span className="text-blue-500 font-medium">Frontends</span>, 
-                            robust <span className="text-purple-500 font-medium">Backends</span>, and 
-                            intelligent <span className="text-purple-600 font-medium">Mobile solutions</span> with 
+                            Crafting elegant <span className="text-blue-500 font-bold">Frontends</span>, 
+                            robust <span className="text-blue-500 font-bold">Backends</span>, and 
+                            intelligent <span className="text-blue-600 font-bold">Mobile solutions</span> with 
                             a full stack mindset and AI Powered solutions.
                         </motion.p>
 
                         <motion.p
-                            variants={FADE_IN_UP}
-                            className="text-gray-600 dark:text-gray-300 mb-8"
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
+                            className={`text-base sm:text-lg max-w-xl mb-10 leading-relaxed mx-auto lg:mx-0 ${
+                                isDark ? 'text-gray-200' : 'text-gray-600'
+                            }`}
                         >
                             A passionate software engineering student at AASTU.{' '}
                             <span className="font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
