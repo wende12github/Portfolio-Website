@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Brain, Database, GitBranch, Palette, Server, Smartphone, Users } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
 import { useMemo, useState } from "react";
+import type { CSSProperties } from "react";
 import {
     FaHtml5,
     FaCss3Alt,
@@ -49,7 +50,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 // Map skill.icon strings from data to real react-icons components
-const skillIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const skillIconMap: Record<string, React.ComponentType<{ className?: string; style?: CSSProperties }>> = {
     // Frontend
     FaHtml5: FaHtml5,
     CssAlt: FaCss3Alt,
@@ -263,9 +264,10 @@ export function SkillsSection(){
                                     <div className="flex items-center justify-between mb-2">
                                         <div className="flex items-center gap-2">
                                             {SkillIcon && (
-                                                <SkillIcon className={
-                                                    `w-5 h-5 ${brandColor ? `text-[${brandColor}]` : (isDark ? "#8B5CF6" : "#7C3AED")}`
-                                                } />
+                                                <SkillIcon
+                                                    className="w-5 h-5"
+                                                    style={{ color: brandColor ?? (isDark ? '#8B5CF6' : '#7C3AED') }}
+                                                />
                                             )}
                                             <span
                                                 className={`font-medium ${
