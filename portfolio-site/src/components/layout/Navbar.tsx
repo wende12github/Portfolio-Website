@@ -12,9 +12,14 @@ export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
+  const [mounted, setMounted] = useState(false);
 
     const { theme, setTheme } = useTheme();
   const { isDark } = useIsDark();
+
+    useEffect(() => {
+      setMounted(true);
+    }, []);
 
     // Scroller handler
     useEffect(() => {
@@ -129,17 +134,22 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             {/* Theme toggle button */}
             <motion.button
-              onClick={() => setTheme(isDark ? "light" : "dark")}
+              onClick={() => setTheme((mounted && isDark) ? "light" : "dark")}
               whileHover={{ scale: 1.1, rotate: 180 }}
               whileTap={{ scale: 0.9 }}
               transition={{ duration: 0.3 }}
               className={`p-2.5 rounded-xl ${
-                isDark
+                mounted && isDark
                   ? "bg-gray-800 text-yellow-400 hover:bg-gray-700"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
             >
-              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {/* Render deterministic icon until mounted */}
+              {mounted ? (
+                isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
             </motion.button>
 
             {/* Mobile menu toggle */}
