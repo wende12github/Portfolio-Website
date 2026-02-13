@@ -1,10 +1,15 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export function useIsDark() {
   const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
-  return { isDark, resolvedTheme };
+  // Prevent SSR/client mismatch: only report dark after mount
+  const isDark = mounted && resolvedTheme === "dark";
+
+  return { isDark, resolvedTheme, mounted };
 }
