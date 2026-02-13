@@ -1,6 +1,9 @@
 import { SITE_CONFIG } from "@/lib/constants";
 import type { MetadataRoute } from "next";
 
+// Ensure static export compatibility
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = SITE_CONFIG.url;
 
