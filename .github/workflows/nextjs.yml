@@ -27,7 +27,7 @@ concurrency:
 # Run commands inside the Next.js app
 defaults:
   run:
-    working-directory: portfolio-site
+    working-directory: Portfolio-website/portfolio-site
 
 jobs:
   # Build job
