@@ -83,7 +83,7 @@ import * as React from 'react';
 export interface SocialLink {
   name: string;
   url: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ className?: string }>;
   color: string;
 }
 
