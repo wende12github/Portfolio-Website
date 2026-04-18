@@ -154,12 +154,12 @@ export function SkillsSection(){
 
     return (
         <section id="skills" className={`py-24 sm:py-20 relative overflow-hidden ${
-            isDark ? 'bg-gray-950' : 'bg-gray-50'
+            isDark ? 'section-soft-gradient' : 'bg-gray-50'
         }`}>
             {/* Background */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-3xl ${
-                    isDark ? 'bg-violet-500/5' : 'bg-violet-200/20'
+                    isDark ? 'bg-amber-500/5' : 'bg-amber-200/20'
                 }`} />
             </div>
 
@@ -172,18 +172,18 @@ export function SkillsSection(){
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <span className="text-violet-500 font-semibold text-sm uppercase tracking-wider">
+                    <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">
                         My Expertise
                     </span>
                     <h2 className={`text-4xl sm:text-5xl font-bold mt-4 mb-6 ${
                         isDark ? 'text-white' : 'text-gray-900'
                     }`}>
                         Skills &{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-purple-600">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300">
                             Technologies
                         </span>
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-600 mx-auto rounded-full" />
+                    <div className="w-24 h-1 bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300 mx-auto rounded-full" />
                 </motion.div>
 
                 {/* Category Tabs */}
@@ -335,15 +335,15 @@ export function SkillsSection(){
                             activeCategory === category.id
                                 ? `bg-gradient-to-r ${category.iconColor} border-transparent`
                                 : isDark
-                                ? "bg-gray-900 border-gray-800 hover:border-violet-500/50"
-                                : "bg-white border-gray-200 hover:border-violet-500/50 shadow-sm"
+                                ? "bg-gray-800 border-gray-800 hover:border-amber-500/50"
+                                : "bg-white border-gray-200 hover:border-amber-500/50 shadow-sm"
                             }`}
                         >
                             <GridIcon
                             className={`w-8 h-8 mx-auto mb-3 ${
                                 activeCategory === category.id
                                 ? "text-white"
-                                : "text-violet-500"
+                                : "text-amber-500"
                             }`}
                             />
                             <h4

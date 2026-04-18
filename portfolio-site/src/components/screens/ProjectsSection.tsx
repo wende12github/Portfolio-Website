@@ -1,20 +1,12 @@
 "use client";
 
-import { FEATURED_PROJECTS } from "@/lib/data/projects";
+import { PROJECTS } from "@/lib/data/projects";
+import { PROJECTS_COPY } from "@/lib/data/home-copy";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Code2, ExternalLink, Github, Sparkles } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, Sparkles } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
 import { useState } from "react";
-
-
-const categories = [
-    { id: 'all', name: 'All Projects' },
-    { id: 'fullstack', name: 'Full Stack' },
-    { id: 'mobile', name: 'Mobile' },
-    { id: 'backend', name: 'Backend' },
-    { id: 'frontend', name: 'Frontend' },
-    { id: 'ai-ml', name: 'AI/ML' }
-];
+import Image from "next/image";
 
 
 export function ProjectsSection() {
@@ -23,14 +15,16 @@ export function ProjectsSection() {
     const [activeCategory, setActiveCategory] = useState('all');
     const [hoveredProject, setHoveredProject] = useState('');
 
-    const filteredProjects = activeCategory === 'all' 
-        ? FEATURED_PROJECTS 
-        : FEATURED_PROJECTS.filter(p => p.category === activeCategory);
+    const allProjectsPreview = PROJECTS.slice(0, 6);
+
+    const filteredProjects = activeCategory === 'all'
+        ? allProjectsPreview
+        : PROJECTS.filter((project) => project.category === activeCategory);
 
     return (
         <section id="projects" 
             className={`py-24 sm:py-20 relative overflow-hidden ${
-                isDark ? 'bg-gray-900' : 'bg-white'
+                isDark ? 'section-soft-gradient' : 'bg-white'
         }`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Section Header */}
@@ -41,18 +35,18 @@ export function ProjectsSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <span className="text-violet-500 font-semibold text-sm uppercase tracking-wider">
-                        Portfolio
+                    <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">
+                        {PROJECTS_COPY.eyebrow}
                     </span>
                     <h2 className={`text-4xl sm:text-5xl font-bold mt-4 mb-6 ${
                         isDark ? 'text-white' : 'text-gray-900'
                     }`}>
-                        Featured{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-purple-600">
-                            Projects
+                        {PROJECTS_COPY.headingPrefix}{' '}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300">
+                            {PROJECTS_COPY.headingHighlight}
                         </span>
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-600 mx-auto rounded-full" />
+                    <div className="w-24 h-1 bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300 mx-auto rounded-full" />
                 </motion.div>
 
                 {/* Category Filter */}
@@ -62,7 +56,7 @@ export function ProjectsSection() {
                     viewport={{ once: true }}
                     className="flex flex-wrap justify-center gap-3 mb-12"
                 >
-                    {categories.map((category) => (
+                    {PROJECTS_COPY.categories.map((category) => (
                         <motion.button
                             key={category.id}
                             onClick={() => setActiveCategory(category.id)}
@@ -70,7 +64,7 @@ export function ProjectsSection() {
                             whileTap={{ scale: 0.95 }}
                             className={`px-6 py-3 rounded-full font-medium transition-all ${
                                 activeCategory === category.id
-                                    ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg shadow-violet-500/25'
+                                    ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg shadow-orange-500/25'
                                     : isDark 
                                         ? 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700' 
                                         : 'bg-gray-100 text-gray-600 hover:text-gray-900 hover:bg-gray-200'
@@ -84,7 +78,13 @@ export function ProjectsSection() {
                 {/* Projects Grid */}
                 <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <AnimatePresence mode="popLayout">
-                        {filteredProjects.map((project, index) =>(
+                        {filteredProjects.map((project, index) => {
+                            const primaryCtaUrl = project.liveUrl ?? project.githubUrl;
+                            const primaryCtaLabel = project.liveUrl
+                                ? PROJECTS_COPY.cta.viewProject
+                                : PROJECTS_COPY.cta.viewCode;
+
+                            return (
                             <motion.article 
                                 key={project.id}
                                 layout
@@ -102,21 +102,27 @@ export function ProjectsSection() {
                                 {project.featured && (
                                     <div className="absolute top-4 left-4 z-20 flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-semibold">
                                         <Sparkles className="w-3 h-3" />
-                                        Featured
+                                        {PROJECTS_COPY.featuredBadge}
                                     </div>
                                 )}
 
                                 {/* Images */}
                                 <div className="relative h-56 overflow-hidden">
-                                    <motion.img 
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-full object-cover"
+                                    <motion.div
                                         animate={{
                                             scale: hoveredProject === project.id ? 1.1 : 1
                                         }}
                                         transition={{ duration: 0.4 }}
-                                    />
+                                        className="h-full w-full"
+                                    >
+                                        <Image
+                                            src={project.image}
+                                            alt={project.title}
+                                            fill
+                                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                                            className="object-cover"
+                                        />
+                                    </motion.div>
                                     <div className={`absolute inset-0 bg-gradient-to-t ${
                                         isDark 
                                             ? 'from-gray-800 via-gray-800/50 to-transparent' 
@@ -127,24 +133,34 @@ export function ProjectsSection() {
                                     <motion.div
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: hoveredProject === project.id ? 1 : 0 }}
-                                        className="absolute inset-0 flex items-center justify-center gap-4 bg-violet-600/80"
+                                        className="absolute inset-0 flex items-center justify-center gap-4 bg-amber-600/80"
                                     >
-                                        <motion.a
-                                            href={project.liveUrl}
-                                            whileHover={{ scale: 1.1 }}
-                                            whileTap={{ scale: 0.9 }}
-                                            className="p-3 rounded-full bg-white text-violet-600 shadow-lg"
-                                        >
-                                            <ExternalLink className="w-5 h-5" />
-                                        </motion.a>
-                                        <motion.a
-                                            href={project.githubUrl}
-                                            whileHover={{ scale: 1.1 }}
-                                            whileTap={{ scale: 0.9 }}
-                                            className="p-3 rounded-full bg-white text-violet-600 shadow-lg"
-                                        >
-                                            <Github className="w-5 h-5" />
-                                        </motion.a>
+                                        {project.liveUrl && (
+                                            <motion.a
+                                                href={project.liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label={`Open live project: ${project.title}`}
+                                                whileHover={{ scale: 1.1 }}
+                                                whileTap={{ scale: 0.9 }}
+                                                className="p-3 rounded-full bg-white text-amber-600 shadow-lg"
+                                            >
+                                                <ExternalLink className="w-5 h-5" />
+                                            </motion.a>
+                                        )}
+                                        {project.githubUrl && (
+                                            <motion.a
+                                                href={project.githubUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label={`Open GitHub repository: ${project.title}`}
+                                                whileHover={{ scale: 1.1 }}
+                                                whileTap={{ scale: 0.9 }}
+                                                className="p-3 rounded-full bg-white text-amber-600 shadow-lg"
+                                            >
+                                                <Github className="w-5 h-5" />
+                                            </motion.a>
+                                        )}
                                     </motion.div>
                                 </div>
 
@@ -178,17 +194,23 @@ export function ProjectsSection() {
                                     </div>
 
                                     {/* View Project Link */}
-                                    <motion.a
-                                        href={project.liveUrl}
-                                        className="inline-flex items-center gap-2 text-violet-500 font-medium text-sm group/link"
-                                        whileHover={{ x: 5 }}
-                                    >
-                                        View Project
-                                        <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
-                                    </motion.a>
+                                    {primaryCtaUrl && (
+                                        <motion.a
+                                            href={primaryCtaUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={`${primaryCtaLabel}: ${project.title}`}
+                                            className="inline-flex items-center gap-2 text-amber-500 font-medium text-sm group/link"
+                                            whileHover={{ x: 5 }}
+                                        >
+                                            {primaryCtaLabel}
+                                            <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                                        </motion.a>
+                                    )}
                                 </div>
                             </motion.article>
-                        ))}
+                            );
+                        })}
                     </AnimatePresence>
                 </motion.div>
 
@@ -201,6 +223,9 @@ export function ProjectsSection() {
                 >
                     <motion.a
                         href="https://github.com/wende12github"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Open all projects on GitHub"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className={`inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-semibold transition-colors ${
@@ -210,7 +235,7 @@ export function ProjectsSection() {
                         }`}
                     >
                         <Github className="w-5 h-5" />
-                        View All Projects on GitHub
+                        {PROJECTS_COPY.cta.viewAllGithub}
                         <ArrowRight className="w-5 h-5" />
                     </motion.a>
                 </motion.div>

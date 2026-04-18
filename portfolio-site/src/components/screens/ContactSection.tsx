@@ -2,7 +2,7 @@
 
 import { FADE_IN_UP, PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Icon, Loader2, MessageCircle, Send, Smartphone } from "lucide-react";
+import { ArrowRight, CheckCircle, Loader2, MessageCircle, Send, Smartphone } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
 import { useState } from "react";
 import type { ChangeEvent, SyntheticEvent } from "react";
@@ -40,7 +40,7 @@ export function ContactSection() {
                     if (data?.message) {
                         errorMessage = data.message;
                     }
-                } catch (parseError) {
+                } catch {
                     // ignore JSON parse errors
                 }
                 throw new Error(errorMessage);
@@ -66,12 +66,12 @@ export function ContactSection() {
     return(
         <section id="contact" 
             className={`py-24 sm:py-20 relative overflow-hidden ${
-                isDark ? 'bg-gray-950' : 'bg-gray-50'
+                isDark ? 'section-soft-gradient' : 'bg-gray-50'
         }`}>
             {/* Background */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full blur-3xl ${
-                    isDark ? 'bg-violet-500/5' : 'bg-violet-200/30'
+                    isDark ? 'bg-amber-500/5' : 'bg-amber-200/30'
                 }`} />
             </div>
 
@@ -84,18 +84,18 @@ export function ContactSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <span className="text-blue-500 font-semibold text-sm uppercase tracking-wider">
+                    <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">
                         Get In Touch
                     </span>
                     <h2 className={`text-4xl sm:text-5xl font-bold mt-4 mb-6 ${
                         isDark ? 'text-white' : 'text-gray-900'
                     }`}>
-                        Let's Work{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
+                        Let&apos;s Work{' '}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300">
                             Together
                         </span>
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-600 mx-auto rounded-full" />
+                    <div className="w-24 h-1 bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300 mx-auto rounded-full" />
                 </motion.div>
 
                 <div className="grid lg:grid-cols-2 gap-16">
@@ -113,8 +113,8 @@ export function ContactSection() {
                         <p className={`text-lg mb-8 leading-relaxed ${
                             isDark ? 'text-gray-400' : 'text-gray-600'
                         }`}>
-                            I&apos;m always open to discussing new projects, creative ideas, or opportunities 
-                            to be part of your visions. Feel free to reach out through any of the channels below.
+                            I&apos;m always open to discussing new projects, creative ideas, or opportunities
+                            to be part of your vision. Feel free to reach out through any of the channels below.
                         </p>
 
                         {/* Contact Cards */}
@@ -128,7 +128,8 @@ export function ContactSection() {
                                     href={`mailto:${PERSONAL_INFO.email}`}
                                     whileHover={{ y: -5, scale: 1.02 }}
                                     target="_blank"
-                                    className="group p-6 rounded-2xl bg-white/80 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700/30 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all"
+                                    rel="noopener noreferrer"
+                                    className="group p-6 rounded-2xl bg-white/80 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700/30 shadow-lg hover:shadow-xl hover:shadow-orange-500/10 transition-all"
                                 >
                                     <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
                                     >
@@ -139,7 +140,7 @@ export function ContactSection() {
                                         {PERSONAL_INFO.email}
                                     </p>
                                     <div className="mt-4 flex items-center gap-2 text-blue-600 dark:text-blue-400 text-sm font-medium">
-                                        Send email
+                                        Send Email
                                         <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </motion.a>
@@ -149,7 +150,8 @@ export function ContactSection() {
                                     href={`tel:${PERSONAL_INFO.phone.replace(/\s/g, '')}`}
                                     whileHover={{ y: -5, scale: 1.02 }}
                                     target='_blank'
-                                    className="group p-6 rounded-2xl bg-white/80 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700/30 shadow-lg hover:shadow-xl hover:shadow-green-500/10 transition-all"
+                                    rel="noopener noreferrer"
+                                    className="group p-6 rounded-2xl bg-white/80 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700/30 shadow-lg hover:shadow-xl hover:shadow-amber-500/10 transition-all"
                                 >
                                     <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                                         <Smartphone className="w-6 h-6 text-white" />
@@ -159,7 +161,7 @@ export function ContactSection() {
                                         {PERSONAL_INFO.phone}
                                     </p>
                                     <div className="mt-4 flex items-center gap-2 text-green-600 dark:text-green-400 text-sm font-medium">
-                                        Make a call
+                                        Make a Call
                                         <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </motion.a>
@@ -167,16 +169,16 @@ export function ContactSection() {
                                 {/* Location Card */}
                                 <motion.div
                                     whileHover={{ y: -5, scale: 1.02 }}
-                                    className="group p-6 rounded-2xl bg-white/80 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700/30 shadow-lg hover:shadow-xl hover:shadow-purple-500/10 transition-all"
+                                    className="group p-6 rounded-2xl bg-white/80 dark:bg-gray-800/50 backdrop-blur-lg border border-gray-200 dark:border-gray-700/30 shadow-lg hover:shadow-xl hover:shadow-amber-500/10 transition-all"
                                 >
-                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                                         <FaMapMarkerAlt className="w-6 h-6 text-white" />
                                     </div>
                                     <h4 className="font-semibold text-gray-900 cursor-pointer dark:text-white mb-2">Location</h4>
                                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                                         {PERSONAL_INFO.location}
                                     </p>
-                                    <div className="mt-4 text-purple-600 dark:text-purple-400 text-sm font-medium">
+                                    <div className="mt-4 text-amber-600 dark:text-amber-400 text-sm font-medium">
                                         Available for remote work
                                     </div>
                                 </motion.div>
@@ -191,6 +193,7 @@ export function ContactSection() {
                                                 key={social.name}
                                                 href={social.url}
                                                 target="_blank"
+                                                rel="noopener noreferrer"
                                                 initial={{ opacity: 0, y: 20 }}
                                                 whileInView={{ opacity: 1, y: 0 }}
                                                 viewport={{ once: true }}
@@ -223,7 +226,7 @@ export function ContactSection() {
                             isDark ? 'bg-gray-900' : 'bg-white shadow-xl'
                         }`}>
                             <div className="flex items-center gap-3 mb-8">
-                                <div className="p-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600">
+                                <div className="p-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500">
                                     <MessageCircle className="w-5 h-5 text-white" />
                                 </div>
                                 <h3 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -234,12 +237,13 @@ export function ContactSection() {
                             <div className="space-y-5">
                                 <div className="grid sm:grid-cols-2 gap-5">
                                     <div>
-                                        <label className={`block text-sm font-medium mb-2 ${
+                                        <label htmlFor="contact-name" className={`block text-sm font-medium mb-2 ${
                                             isDark ? 'text-gray-300' : 'text-gray-700'
                                         }`}>
                                             Your Name
                                         </label>
                                         <input
+                                            id="contact-name"
                                             type="text"
                                             name="name"
                                             value={formState.name}
@@ -247,19 +251,20 @@ export function ContactSection() {
                                             required
                                             className={`w-full px-4 py-3 rounded-xl border transition-all outline-none ${
                                                 isDark 
-                                                    ? 'bg-gray-800 border-gray-700 text-white focus:border-violet-500' 
-                                                    : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-violet-500'
+                                                        ? 'bg-gray-800 border-gray-700 text-white focus:border-amber-500' 
+                                                        : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-amber-500'
                                             }`}
                                             placeholder="John Doe"
                                         />
                                     </div>
                                     <div>
-                                        <label className={`block text-sm font-medium mb-2 ${
+                                        <label htmlFor="contact-email" className={`block text-sm font-medium mb-2 ${
                                             isDark ? 'text-gray-300' : 'text-gray-700'
                                         }`}>
                                             Your Email
                                         </label>
                                         <input
+                                            id="contact-email"
                                             type="email"
                                             name="email"
                                             value={formState.email}
@@ -267,8 +272,8 @@ export function ContactSection() {
                                             required
                                             className={`w-full px-4 py-3 rounded-xl border transition-all outline-none ${
                                                 isDark 
-                                                    ? 'bg-gray-800 border-gray-700 text-white focus:border-violet-500' 
-                                                    : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-violet-500'
+                                                        ? 'bg-gray-800 border-gray-700 text-white focus:border-amber-500' 
+                                                        : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-amber-500'
                                             }`}
                                             placeholder="john@example.com"
                                         />
@@ -276,12 +281,13 @@ export function ContactSection() {
                                 </div>
 
                                 <div>
-                                    <label className={`block text-sm font-medium mb-2 ${
+                                    <label htmlFor="contact-subject" className={`block text-sm font-medium mb-2 ${
                                         isDark ? 'text-gray-300' : 'text-gray-700'
                                     }`}>
                                         Subject
                                     </label>
                                     <input
+                                        id="contact-subject"
                                         type="text"
                                         name="subject"
                                         value={formState.subject}
@@ -289,20 +295,21 @@ export function ContactSection() {
                                         required
                                         className={`w-full px-4 py-3 rounded-xl border transition-all outline-none ${
                                             isDark 
-                                                ? 'bg-gray-800 border-gray-700 text-white focus:border-violet-500' 
-                                                : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-violet-500'
+                                                ? 'bg-gray-800 border-gray-700 text-white focus:border-amber-500' 
+                                                : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-amber-500'
                                         }`}
                                         placeholder="Project Collaboration"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className={`block text-sm font-medium mb-2 ${
+                                    <label htmlFor="contact-message" className={`block text-sm font-medium mb-2 ${
                                         isDark ? 'text-gray-300' : 'text-gray-700'
                                     }`}>
                                         Message
                                     </label>
                                     <textarea
+                                        id="contact-message"
                                         name="message"
                                         value={formState.message}
                                         onChange={handleChange}
@@ -310,8 +317,8 @@ export function ContactSection() {
                                         rows={5}
                                         className={`w-full px-4 py-3 rounded-xl border transition-all outline-none resize-none ${
                                             isDark 
-                                                ? 'bg-gray-800 border-gray-700 text-white focus:border-violet-500' 
-                                                : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-violet-500'
+                                                ? 'bg-gray-800 border-gray-700 text-white focus:border-amber-500' 
+                                                : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-amber-500'
                                         }`}
                                         placeholder="Tell me about your project..."
                                     />
@@ -325,7 +332,7 @@ export function ContactSection() {
                                     className={`w-full py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-2 transition-all ${
                                         status === 'success'
                                             ? 'bg-green-500'
-                                            : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg hover:shadow-violet-500/25'
+                                            : 'bg-gradient-to-r from-orange-500 to-amber-500 hover:shadow-lg hover:shadow-amber-500/25'
                                     }`}
                                 >
                                     {status === 'loading' ? (
@@ -350,6 +357,12 @@ export function ContactSection() {
                                         </>
                                     )}
                                 </motion.button>
+
+                                <p aria-live="polite" className="sr-only">
+                                    {status === 'loading' && 'Sending your message.'}
+                                    {status === 'success' && 'Your message was sent successfully.'}
+                                    {status === 'error' && 'Message sending failed. Please try again.'}
+                                </p>
                             </div>
                         </form>
                     </motion.div>

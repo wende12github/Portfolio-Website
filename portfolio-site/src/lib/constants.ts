@@ -51,7 +51,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
 export const PERSONAL_INFO: PersonalInfo = {
   name: 'Wendmagegn Tajura',
   title: 'Full Stack & Mobile Developer',
-  tagline: 'Crafting elegant Frontends, robust Backends, and intelligent Mobile solutions with a full stack mindset and AI Powered solutions.',
+  tagline: 'Crafting elegant Frontend, robust Backends, and intelligent Mobile solutions with a full stack mindset and AI Powered solutions.',
   email: 'wendmagegn9412@gmail.com',
   phone: '+251 966061399',
   location: 'Addis Ababa, Ethiopia',
@@ -74,7 +74,7 @@ export const HERO_SKILLS: string[] = [
 export const ACHIEVEMENTS = [
   {
     icon: 'Trophy',
-    title: '2nd place in Flutter Mobile app',
+    title: '2nd Place in Flutter Mobile App',
     event: '2024 AASTU TechFest Hackathon',
     subtitle: 'UI Team Leader',
     highlight: true,
@@ -88,16 +88,16 @@ export const ACHIEVEMENTS = [
   },
   {
     icon: 'Trophy',
-    title: '2nd place Winner',
+    title: '2nd Place Winner',
     event: '2025 AASTU TechFest Hackathon',
     subtitle: 'Project Manager and Team Leader',
     highlight: true,
   },
   {
     icon: 'Award',
-    title: '2nd place Winner',
+    title: '2nd Place Winner',
     event: '2025 AASTU TechFest Hackathon',
-    subtitle: 'Backend Dev.',
+    subtitle: 'Backend Developer',
     highlight: true,
   },
 ];
@@ -105,9 +105,9 @@ export const ACHIEVEMENTS = [
 // SITE METADATA
 export const SITE_CONFIG = {
   title: 'Wendmagegn Tajura | Full Stack & Mobile Developer',
-  description: 'Wendmagegn Tajura - Full Stack & Mobile Developer Portfolio, showcasing projects, skills, Machine Learning, Model Trainer and achievements.',
+  description: 'Wendmagegn Tajura - Full Stack & Mobile Developer portfolio showcasing projects, skills, machine learning work, model training, and achievements.',
   url: 'https://wendmagegn.dev',
-  ogImage: '/images/og-image.png',
+  ogImage: '/images/portfolio-screenshot.png',
   keywords: [
     'Full Stack Developer',
     'Mobile App Developer',
