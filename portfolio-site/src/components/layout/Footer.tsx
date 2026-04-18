@@ -19,7 +19,7 @@ export function Footer() {
     // Main footer container with padding and background color based on theme
         <footer
         className={`relative pt-16 pb-8 ${
-            isDark ? "bg-gray-700" : "bg-gray-100"
+            isDark ? "bg-gray-900" : "bg-gray-100"
         }`}
         >
         {/* Decorative top gradient line */}

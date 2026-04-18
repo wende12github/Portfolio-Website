@@ -73,7 +73,7 @@ export const HERO_SKILLS: string[] = [
 // ACHIEVEMENTS
 export const ACHIEVEMENTS = [
   {
-    icon: 'Trophy',
+    icon: 'Award',
     title: '2nd Place in Flutter Mobile App',
     event: '2024 AASTU TechFest Hackathon',
     subtitle: 'UI Team Leader',
@@ -94,10 +94,10 @@ export const ACHIEVEMENTS = [
     highlight: true,
   },
   {
-    icon: 'Award',
-    title: '2nd Place Winner',
-    event: '2025 AASTU TechFest Hackathon',
-    subtitle: 'Backend Developer',
+    icon: 'Trophy',
+    title: 'INSA Cyber Talent Center Graduated',
+    event: '3rd round of INSA Cyber Talent Center 2024',
+    subtitle: 'Penetration Tester and ML Model Trainer',
     highlight: true,
   },
 ];

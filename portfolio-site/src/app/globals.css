@@ -115,9 +115,11 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-/* Shared dark surface gradient: #bdc3c7 -> #2c3e50 -> #bdc3c7, angled bottom-left to top-right #2c3e50 or #1f264d93 -> #bdc3c7 */
+/* Shared dark surface gradient: #bdc3c7 -> #2c3e50 -> #bdc3c7, angled bottom-left to top-right #2c3e50 or #1f264d93 -> #bdc3c7  #536976
+→ 
+#292e49 */
 .section-soft-gradient {
-  background-image: linear-gradient(calc(45deg + var(--section-scroll-tilt, 0deg)), #bdc3c7 0%, #2c3e50 50%, #bdc3c7 100%);
+  background-image: linear-gradient(calc(45deg + var(--section-scroll-tilt, 0deg)), #24243e 0%,  #0f0c29 50%, #24243e 100%);
   background-size: 200% 200%;
   animation: section-gradient-flow 18s ease-in-out;
   transition: background-position 700ms ease, filter 700ms ease;

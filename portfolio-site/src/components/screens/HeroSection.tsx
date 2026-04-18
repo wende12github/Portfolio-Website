@@ -298,7 +298,7 @@ export function HeroSection() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 1 }}
-                            className="mt-8 flex items-center justify-center lg:justify-start gap-4 overflow-visible"
+                            className="mt-20 flex items-center justify-center lg:justify-start gap-4 overflow-visible"
                         >
                             {SOCIAL_LINKS.map((social, index) => (
                                 <motion.a

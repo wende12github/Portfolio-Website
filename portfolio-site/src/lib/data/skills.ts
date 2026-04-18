@@ -13,7 +13,7 @@ export const SKILLS: SkillCategory[] = [
           { name: 'CSS3/Tailwind CSS', icon: 'CssAlt', level: 'expert' },
           // { name: 'React.js', icon: 'React', level: 'expert' },
           { name: 'Next.js', icon: 'NextJs', level: 'advanced' },
-          { name: 'TypeScript', icon: 'Ts', level: 'intermediate' },
+          { name: 'TypeScript', icon: 'Ts', level: 'advanced' },
           // { name: 'JavaScript', icon: 'FaJs', level: 'intermediate' },
       ]
   },
@@ -29,7 +29,7 @@ export const SKILLS: SkillCategory[] = [
           { name: 'Python', icon: 'Python', level: 'expert' },
           { name: 'Django', icon: 'FaPython', level: 'advanced' },    
           { name: 'PHP', icon: 'FaPhp', level: 'intermediate' },
-          { name: 'Java', icon: 'FaJava', level: 'intermediate' },
+          { name: 'Java', icon: 'FaJava', level: 'advanced' },
       ]
   },
 
@@ -55,7 +55,7 @@ export const SKILLS: SkillCategory[] = [
     skills: [
       { name: 'PostgreSQL', icon: 'SiPostgresql', level: 'expert' },
       { name: 'MongoDB', icon: 'MongoDB', level: 'intermediate' },
-      // { name: 'Redis', icon: 'Redis', level: 'intermediate' },
+      { name: 'Redis', icon: 'Redis', level: 'intermediate' },
       { name: 'Firebase', icon: 'Firebase', level: 'advanced' },
       { name: 'Supabase', icon: 'Supabase', level: 'advanced' },
     ],
@@ -89,7 +89,7 @@ export const SKILLS: SkillCategory[] = [
       { name: 'Git/GitHub', icon: 'FaGitAlt', level: 'expert' },
       { name: 'C++', icon: 'SiCplusplus', level: 'advanced' },
       { name: 'CI/CD', icon: 'GitAlt', level: 'advanced' },
-      { name: 'Docker', icon: 'FaDocker', level: 'beginner' },
+      { name: 'Docker', icon: 'FaDocker', level: 'intermediate' },
     ],
   },
 
