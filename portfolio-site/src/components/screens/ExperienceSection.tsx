@@ -20,7 +20,7 @@ export function ExperienceSection() {
     return(
         <section id="experiences" 
             className={`py-24 sm:py-20 relative overflow-hidden ${
-                isDark ? 'bg-gray-900' : 'bg-white'
+                isDark ? 'section-soft-gradient' : 'bg-white'
         }`}>
             {/* Background */}
             <div className="absolute inset-0 pointer-events-none">
@@ -38,18 +38,18 @@ export function ExperienceSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <span className="text-violet-500 font-semibold text-sm uppercase tracking-wider">
+                    <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">
                         Experience
                     </span>
                     <h2 className={`text-4xl sm:text-5xl font-bold mt-4 mb-6 ${
                         isDark ? 'text-white' : 'text-gray-900'
                     }`}>
                         Experience{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-purple-600">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300">
                             & Highlights
                         </span>
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-600 mx-auto rounded-full" />
+                    <div className="w-24 h-1 bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300 mx-auto rounded-full" />
                 </motion.div>
 
                 {/* Experience Cards */}
@@ -71,7 +71,7 @@ export function ExperienceSection() {
                                     scale: 1.02, 
                                     y: -5,
                                     boxShadow: isDark 
-                                        ? '0 20px 40px rgba(139, 92, 246, 0.15)' 
+                                        ? '0 20px 40px rgba(245, 158, 11, 0.15)' 
                                         : '0 20px 40px rgba(0, 0, 0, 0.1)'
                                 }}
                                 whileTap={{ scale: 0.98 }}
@@ -104,7 +104,7 @@ export function ExperienceSection() {
                                                 {experience.date}
                                             </span>
                                         </div>
-                                        <p className="text-blue-500 font-medium mb-2">
+                                        <p className="text-orange-500 font-medium mb-2">
                                             {experience.organization}
                                         </p>
                                         <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>
@@ -125,7 +125,7 @@ export function ExperienceSection() {
                     transition={{ delay: 0.3 }}
                     className="mt-12"
                 >
-                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white">
+                    <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl p-8 md:p-12 text-white">
                         <div className="max-w-3xl mx-auto text-center">
                             <FaQuoteLeft className="w-8 h-8 mx-auto mb-4 opacity-50" />
                             <p className="text-lg md:text-xl mb-6 leading-relaxed">
