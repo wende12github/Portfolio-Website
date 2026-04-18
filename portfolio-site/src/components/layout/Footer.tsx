@@ -2,7 +2,7 @@
 
 import { NAV_ITEMS, SOCIAL_LINKS, PERSONAL_INFO } from "@/lib/constants";
 import { motion } from "framer-motion";
-import { ArrowUp, Heart, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
 import Image from "next/image";
 
@@ -19,11 +19,11 @@ export function Footer() {
     // Main footer container with padding and background color based on theme
         <footer
         className={`relative pt-16 pb-8 ${
-            isDark ? "bg-gray-900" : "bg-gray-100"
+            isDark ? "bg-gray-700" : "bg-gray-100"
         }`}
         >
         {/* Decorative top gradient line */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Three-column grid on medium+ screens */}
@@ -51,7 +51,7 @@ export function Footer() {
                     </div>
                     <span className={`text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
                         WEND
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-purple-600">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300">
                         MAGEGN
                         </span>
                     </span>
@@ -82,7 +82,7 @@ export function Footer() {
                         }}
                         whileHover={{ x: 5 }} // nice little hover animation
                         className={`text-sm transition-colors ${
-                        isDark ? "text-gray-400 hover:text-blue-400" : "text-gray-600 hover:text-blue-600"
+                                isDark ? "text-gray-400 hover:text-orange-400" : "text-gray-600 hover:text-orange-600"
                         }`}
                     >
                         {link.label}
@@ -103,7 +103,7 @@ export function Footer() {
                     <a 
                         href={`mailto:${PERSONAL_INFO.email}`}
                         className={`flex items-center gap-2 text-sm transition-colors ${
-                            isDark ? "text-gray-400 hover:text-blue-400" : "text-gray-600 hover:text-blue-600"
+                            isDark ? "text-gray-400 hover:text-orange-400" : "text-gray-600 hover:text-orange-600"
                         }`}
                     >
                         <Mail className="w-4 h-4" />
@@ -112,7 +112,7 @@ export function Footer() {
                     <a 
                         href={`tel:${PERSONAL_INFO.phone}`}
                         className={`flex items-center gap-2 text-sm transition-colors ${
-                            isDark ? "text-gray-400 hover:text-blue-400" : "text-gray-600 hover:text-blue-600"
+                            isDark ? "text-gray-400 hover:text-orange-400" : "text-gray-600 hover:text-orange-600"
                         }`}
                     >
                         <Phone className="w-4 h-4" />
@@ -138,8 +138,8 @@ export function Footer() {
                     whileTap={{ scale: 0.9 }}
                     className={`p-3 rounded-xl transition-colors ${
                         isDark
-                        ? "bg-gray-800 text-gray-400 hover:text-blue-400 hover:bg-gray-700"
-                        : "bg-gray-100 text-gray-600 hover:text-blue-600 hover:bg-gray-200"
+                        ? "bg-gray-800 text-gray-400 hover:text-orange-400 hover:bg-gray-700"
+                        : "bg-gray-100 text-gray-600 hover:text-orange-600 hover:bg-gray-200"
                     }`}
                     aria-label={social.name}
                     >
@@ -164,19 +164,6 @@ export function Footer() {
             </p>
             </div>
         </div>
-
-        {/* Floating "Scroll to Top" button – appears fixed bottom-right */}
-        <motion.button
-            onClick={scrollToTop}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            whileHover={{ scale: 1.1, y: -3 }}
-            whileTap={{ scale: 0.9 }}
-            className="fixed bottom-8 right-8 p-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25 z-50"
-            aria-label="Scroll to top"
-        >
-            <ArrowUp className="w-5 h-5" />
-        </motion.button>
         </footer>
     );
 }
