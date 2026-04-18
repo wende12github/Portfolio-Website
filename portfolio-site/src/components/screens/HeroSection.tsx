@@ -1,10 +1,11 @@
 "use client";
 
-import { FADE_IN_UP, HERO_SKILLS, PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
-import { motion } from "framer-motion";
-import { ArrowDown, ArrowRight, Award, Code2, Heart, Sparkles, Trophy } from "lucide-react";
+import { HERO_SKILLS, PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
+import { HERO_COPY } from "@/lib/data/home-copy";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowDown, Trophy } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
-import { PROXY_FILENAME } from "next/dist/lib/constants";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 
@@ -12,13 +13,24 @@ const typingSpeed = 80;
 const deletingSpeed = 50;
 const pauseDuration = 1800;
 
+const SHOOTING_STARS = [
+    { top: "8%", left: "7%", duration: 2.4, delay: 0.3 },
+    { top: "18%", left: "21%", duration: 3.0, delay: 1.1 },
+    { top: "28%", left: "36%", duration: 2.6, delay: 2.0 },
+    { top: "35%", left: "51%", duration: 3.2, delay: 2.8 },
+    { top: "11%", left: "64%", duration: 2.8, delay: 3.4 },
+    { top: "24%", left: "77%", duration: 3.4, delay: 4.2 },
+    { top: "16%", left: "90%", duration: 2.5, delay: 4.9 },
+    { top: "41%", left: "58%", duration: 3.1, delay: 5.6 },
+];
+
 export function HeroSection() {
     const { isDark } = useIsDark();
+    const prefersReducedMotion = useReducedMotion();
 
     const [displayText, setDisplayedText] = useState("");
     const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
-    const [blink, setBlink] = useState(true);
 
     useEffect(() => {
         let timer: NodeJS.Timeout;
@@ -42,75 +54,43 @@ export function HeroSection() {
             }, pauseDuration);
         } else if (isDeleting && displayText.length === 0) {
             // Finished deleting → move to next role
-            setIsDeleting(false);
-            setCurrentRoleIndex((prev) => (prev + 1) % HERO_SKILLS.length);
+            timer = setTimeout(() => {
+                setIsDeleting(false);
+                setCurrentRoleIndex((prev) => (prev + 1) % HERO_SKILLS.length);
+            }, 0);
         }
 
         return () => clearTimeout(timer);
     }, [displayText, isDeleting, currentRoleIndex]);
 
-    // Blinking cursor effect
-    useEffect(() => {
-        const interval = setInterval(() => setBlink((prev) => !prev), 550);
-        return () => clearInterval(interval);
-    }, []);
-
     return (
-        <section id="home" 
+        <motion.section id="home" 
             className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
-                isDark ? "bg-gray-800/30" : "bg-gray-50"
-            }`} 
+                isDark ? "section-soft-gradient" : "bg-gray-50"
+            }`}
+            initial={isDark ? { backgroundPosition: "0% 50%" } : undefined}
+            whileInView={isDark ? { backgroundPosition: "100% 50%" } : undefined}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
         >
             {/* Animated Background */}
             <div className="absolute inset-0">
                 <div
                     className={`absolute inset-0 ${
                         isDark
-                        ? "bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-900/20 via-gray-950 to-gray-950"
+                        ? "bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-400/20 via-gray-700/15 to-gray-900/10"
                         : "bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-violet-100 via-gray-50 to-gray-50"
                     }`}
                 />
-                {/* Floating Orbs
-                {[...Array(5)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        className={`absolute rounded-full blur-3xl ${
-                            isDark ? 'bg-blue-500/10' : 'bg-blue-300/30'
-                        }`}
-                        style={{
-                            width: Math.random() * 400 + 200,
-                            height: Math.random() * 400 + 200,
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                        }}
-                        animate={{
-                            x: [0, 50, 0],
-                            y: [0, 30, 0],
-                            scale: [1, 1.1, 1],
-                        }}
-                        transition={{
-                            duration: Math.random() * 10 + 10,
-                            repeat: Infinity,
-                            ease: 'easeInOut',
-                        }}
-                    />
-                ))} */}
-
-                {/* Grid Pattern */}
-                {/* <div className={`absolute inset-0 ${
-                    isDark 
-                        ? 'bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)]'
-                        : 'bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)]'
-                } bg-[size:50px_50px]`} /> */}
 
                 {/* Shooting Stars */}
-                {[...Array(8)].map((_, i) => (
+                {!prefersReducedMotion && SHOOTING_STARS.map((star, i) => (
                     <motion.div
                         key={`star-${i}`}
                         className="absolute w-1 h-1 bg-white rounded-full"
                         style={{
-                            top: `${Math.random() * 50}%`,
-                            left: `${Math.random() * 100}%`,
+                            top: star.top,
+                            left: star.left,
                             boxShadow: '0 0 6px 2px rgba(255,255,255,0.6), 0 0 12px 4px rgba(59, 130, 246, 0.4)'
                         }}
                         initial={{ x: 0, y: 0, opacity: 0 }}
@@ -120,9 +100,9 @@ export function HeroSection() {
                             opacity: [0, 1, 0]
                         }}
                         transition={{
-                            duration: 2 + Math.random() * 2,
+                            duration: star.duration,
                             repeat: Infinity,
-                            delay: i * 1.5 + Math.random() * 3,
+                            delay: star.delay,
                             ease: 'linear'
                         }}
                     />
@@ -138,11 +118,11 @@ export function HeroSection() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-600/10 border border-blue-500/20 mb-8"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-400/15 to-yellow-300/15 border border-amber-400/35 mb-8"
                         >
-                            <Trophy className="w-6 h-6 text-blue-500" />
-                            <span className={`text-sm font-medium ${isDark ? 'text-blue-300' : 'text-blue-600'}`}>
-                                2025 AASTU Tech Fest Hackathon 2nd place Winner
+                            <Trophy className="w-6 h-6 text-amber-400" />
+                            <span className={`text-sm font-medium ${isDark ? 'text-amber-200' : 'text-amber-700'}`}>
+                                {HERO_COPY.badge}
                             </span>
                         </motion.div>
 
@@ -155,13 +135,13 @@ export function HeroSection() {
                                 isDark ? 'text-white' : 'text-gray-900'
                             }`}
                         >
-                            Hey, I&apos;m{' '}
+                            {HERO_COPY.greetingPrefix}{' '}
                             <span className="relative">
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-purple-600">
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-200">
                                     {PERSONAL_INFO.name.split(' ')[0].toUpperCase()}
                                 </span>
                                 <motion.span
-                                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-purple-600 rounded-full"
+                                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-200 rounded-full"
                                     initial={{ scaleX: 0 }}
                                     animate={{ scaleX: 1 }}
                                     transition={{ duration: 0.8, delay: 0.8 }}
@@ -176,12 +156,12 @@ export function HeroSection() {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             className="h-10 sm:h-12 md:h-14 mb-8"
                         >
-                            <span className="text-xl sm:text-2xl md:text-3xl font-light text-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-purple-500/70">
+                            <span className="text-xl sm:text-2xl md:text-3xl font-light text-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-300 via-amber-300 to-yellow-200">
                                 {displayText}
                                 <motion.span
-                                    animate={{ opacity: [1, 0] }}
-                                    transition={{ duration: 0.5, repeat: Infinity }}
-                                    className="inline-block w-0.5 h-6 sm:h-8 md:h-10 bg-gradient-to-b from-blue-500 to-purple-500 ml-1 align-middle"
+                                    animate={prefersReducedMotion ? undefined : { opacity: [1, 0] }}
+                                    transition={prefersReducedMotion ? undefined : { duration: 0.5, repeat: Infinity }}
+                                    className="inline-block w-0.5 h-6 sm:h-8 md:h-10 bg-gradient-to-b from-orange-400 to-amber-300 ml-1 align-middle"
                                 />
                             </span>
                         </motion.div>
@@ -195,10 +175,12 @@ export function HeroSection() {
                                 isDark ? 'text-gray-200' : 'text-gray-600'
                             }`}
                         >
-                            Crafting elegant <span className="text-blue-500 font-bold">Frontends</span>, 
-                            robust <span className="text-blue-500 font-bold">Backends</span>, and 
-                            intelligent <span className="text-blue-600 font-bold">Mobile solutions</span> with 
-                            a full stack mindset and AI Powered solutions.
+                            {HERO_COPY.description.intro}{' '}
+                            <span className="font-bold">{HERO_COPY.description.frontend}</span>,{' '}
+                            {HERO_COPY.description.middle}{' '}
+                            <span className="font-bold">{HERO_COPY.description.backend}</span>, {HERO_COPY.description.and}{' '}
+                            intelligent <span className="font-bold">{HERO_COPY.description.mobile}</span>{' '}
+                            {HERO_COPY.description.outro}
                         </motion.p>
 
                         <motion.p
@@ -209,11 +191,11 @@ export function HeroSection() {
                                 isDark ? 'text-gray-200' : 'text-gray-600'
                             }`}
                         >
-                            A passionate software engineering student at AASTU.{' '}
-                            <span className="font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                            2025 AASTU Tech Fest Hackathon Winner,
+                            {HERO_COPY.story.intro}{' '}
+                            <span className="font-bold bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-200 bg-clip-text text-transparent">
+                                {HERO_COPY.story.highlight}
                             </span>{' '}
-                            team leader, code enthusiast and always hungry to build smarter tech.
+                            {HERO_COPY.story.outro}
                         </motion.p>
 
                         {/* CTA Buttons */}
@@ -231,10 +213,10 @@ export function HeroSection() {
                                 }}
                                 whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(59, 130, 246, 0.3)' }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-lg shadow-blue-500/25 hover:shadow-purple-500/40 transition-shadow"
+                                className="px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-2xl font-semibold text-lg shadow-lg shadow-orange-500/25 hover:shadow-amber-400/40 transition-shadow"
                             >
                                 {/* <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /> */}
-                                View My Work
+                                {HERO_COPY.cta.work}
                             </motion.a>
                             <motion.a
                                 href="#contact"
@@ -250,7 +232,7 @@ export function HeroSection() {
                                         : 'border-gray-200 text-gray-900 hover:bg-gray-100'
                                 }`}
                             >
-                                Get In Touch
+                                {HERO_COPY.cta.contact}
                             </motion.a>
                         </motion.div>
 
@@ -261,15 +243,15 @@ export function HeroSection() {
                         <motion.div
                             animate={{ 
                                 boxShadow: [
-                                    '0 0 60px rgba(59, 130, 246, 0.6), 0 0 120px rgba(147, 51, 234, 0.4)',
-                                    '0 0 80px rgba(147, 51, 234, 0.6), 0 0 150px rgba(59, 130, 246, 0.4)',
-                                    '0 0 60px rgba(59, 130, 246, 0.6), 0 0 120px rgba(147, 51, 234, 0.4)'
+                                    '0 0 60px rgba(251, 146, 60, 0.55), 0 0 120px rgba(250, 204, 21, 0.35)',
+                                    '0 0 80px rgba(245, 158, 11, 0.6), 0 0 150px rgba(251, 191, 36, 0.35)',
+                                    '0 0 60px rgba(251, 146, 60, 0.55), 0 0 120px rgba(250, 204, 21, 0.35)'
                                 ]
                             }}
                             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                             className="absolute inset-0 w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full border-4 border-transparent"
                             style={{
-                                background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.3))',
+                                background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(250, 204, 21, 0.3))',
                                 backgroundClip: 'padding-box'
                             }}
                         />
@@ -280,7 +262,7 @@ export function HeroSection() {
                             transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
                             className="absolute inset-0 w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full"
                             style={{
-                                background: 'conic-gradient(from 0deg, #3b82f6, #8b5cf6, #a855f7, #3b82f6)',
+                                background: 'conic-gradient(from 0deg, #f97316, #f59e0b, #facc15, #f97316)',
                                 padding: '4px'
                             }}
                         >
@@ -295,41 +277,48 @@ export function HeroSection() {
                             className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden"
                             style={{ margin: '4px' }}
                         >
-                            <motion.img
-                                src={PERSONAL_INFO.profileImage}
-                                alt="Wendmagegn"
-                                className="w-full h-full object-cover rounded-full"
-                                animate={{ scale: [1, 1.05, 1] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                            />
+                            <motion.div
+                                animate={prefersReducedMotion ? undefined : { scale: [1, 1.05, 1] }}
+                                transition={prefersReducedMotion ? undefined : { duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                                className="w-full h-full"
+                            >
+                                <Image
+                                    src={PERSONAL_INFO.profileImage}
+                                    alt="Wendmagegn"
+                                    fill
+                                    sizes="(min-width: 1024px) 24rem, (min-width: 768px) 20rem, 16rem"
+                                    className="object-cover rounded-full"
+                                    priority
+                                />
+                            </motion.div>
                         </motion.div>
-                        <br />
-                        <br />
-                        <br />
+
                         {/* Social Links */}
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 1 }}
-                            className="flex items-center justify-center lg:justify-start gap-4"
+                            className="mt-8 flex items-center justify-center lg:justify-start gap-4 overflow-visible"
                         >
                             {SOCIAL_LINKS.map((social, index) => (
                                 <motion.a
                                     key={social.name}
                                     href={social.url}
-                                    whileHover={{ scale: 1.2, y: -5 }}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={prefersReducedMotion ? undefined : { scale: 1.18, y: -12 }}
                                     whileTap={{ scale: 0.9 }}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 1 + index * 0.1 }}
-                                    className={`p-3 rounded-xl transition-colors ${
+                                    transition={{ delay: 1 + index * 0.06, duration: 0.18 }}
+                                    className={`group relative z-0 p-3 rounded-xl transition-all duration-100 hover:z-10 ${
                                         isDark 
-                                            ? 'bg-gray-800 text-gray-400 hover:text-blue-400 hover:bg-gray-700' 
-                                            : 'bg-gray-100 text-gray-600 hover:text-blue-600 hover:bg-gray-200'
-                                    }`}
+                                            ? 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:shadow-[0_14px_24px_-12px_rgba(251,146,60,0.7)] hover:ring-4 hover:ring-white/25' 
+                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:shadow-[0_12px_22px_-12px_rgba(249,115,22,0.45)] hover:ring-4 hover:ring-black/15'
+                                    } ${social.color} duration-100`}
                                     aria-label={social.name}
                                 >
-                                    <social.icon className="w-6 h-6" />
+                                    <social.icon className="w-6 h-6 transition-transform duration-100 group-hover:scale-110" />
                                 </motion.a>
                             ))}
                         </motion.div>
@@ -355,11 +344,11 @@ export function HeroSection() {
                             isDark ? 'text-gray-500' : 'text-gray-400'
                         }`}
                     >
-                        <span className="text-sm">Scroll Down</span>
+                        <span className="text-sm">{HERO_COPY.scroll}</span>
                         <ArrowDown className="w-5 h-5" />
                     </motion.a>
                 </motion.div>
             </div>
-        </section>
+        </motion.section>
     );
 }
