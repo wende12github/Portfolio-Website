@@ -1,8 +1,9 @@
 "use client";
 
 import { ACHIEVEMENTS, FADE_IN_UP, PERSONAL_INFO } from "@/lib/constants";
+import { ABOUT_COPY } from "@/lib/data/home-copy";
 import { motion } from "framer-motion";
-import { Award, GraduationCap, Heart, Rocket, Trophy } from "lucide-react";
+import { Award, GraduationCap, Rocket, Trophy } from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
 import Image from 'next/image';
 import { FaDownload } from "react-icons/fa";
@@ -20,7 +21,7 @@ export function AboutSection() {
 
     return (
         <section id="about" className={`py-24 sm:py-20 relative overflow-hidden ${
-            isDark ? 'bg-gray-900' : 'bg-white'
+            isDark ? 'section-soft-gradient' : 'bg-white'
         }`}>
             {/* Background Elements */}
             <div className="absolute inset-0 pointer-events-none">
@@ -41,18 +42,18 @@ export function AboutSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <span className="text-violet-500 font-semibold text-sm uppercase tracking-wider">
-                        About Me
+                    <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">
+                        {ABOUT_COPY.eyebrow}
                     </span>
                     <h2 className={`text-4xl sm:text-5xl font-bold mt-4 mb-6 ${
                         isDark ? 'text-white' : 'text-gray-900'
                     }`}>
-                        Passionate Developer &{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-purple-600">
-                            Innovator
+                        {ABOUT_COPY.headingPrefix}{' '}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300">
+                            {ABOUT_COPY.headingHighlight}
                         </span>
                     </h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-600 mx-auto rounded-full" />
+                    <div className="w-24 h-1 bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300 mx-auto rounded-full" />
                 </motion.div>
 
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -68,8 +69,8 @@ export function AboutSection() {
                             isDark ? 'bg-gray-800' : 'bg-gray-100'
                         }`}>
                             {/* Decorative Elements */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-violet-500/20 to-purple-600/20" />
-                            <div className="absolute inset-4 rounded-2xl border-2 border-dashed border-violet-500/30" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-yellow-300/20" />
+                            <div className="absolute inset-4 rounded-2xl border-2 border-dashed border-amber-400/30" />
                             
                             {/* Profile Placeholder */}
                             <Image
@@ -83,14 +84,14 @@ export function AboutSection() {
                             <motion.div
                                 animate={{ y: [-10, 10, -10] }}
                                 transition={{ duration: 4, repeat: Infinity }}
-                                className="absolute top-8 right-8 p-3 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 shadow-lg"
+                                className="absolute top-8 right-8 p-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 shadow-lg"
                             >
                                 <Trophy className="w-6 h-6 text-white" />
                             </motion.div>
                             <motion.div
                                 animate={{ y: [10, -10, 10] }}
                                 transition={{ duration: 5, repeat: Infinity }}
-                                className="absolute bottom-8 left-8 p-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 shadow-lg"
+                                className="absolute bottom-8 left-8 p-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 shadow-lg"
                             >
                                 <Award className="w-6 h-6 text-white" />
                             </motion.div>
@@ -107,33 +108,33 @@ export function AboutSection() {
                         <div className={`flex items-center gap-3 mb-6 ${
                             isDark ? 'text-gray-400' : 'text-gray-600'
                         }`}>
-                            <GraduationCap className="w-5 h-5 text-violet-500" />
-                            <span>Software Engineering Student at AASTU</span>
+                            <GraduationCap className="w-5 h-5 text-amber-500" />
+                            <span>{ABOUT_COPY.studentLine}</span>
                         </div>
 
                         <p className={`text-lg leading-relaxed mb-6 ${
                             isDark ? 'text-gray-300' : 'text-gray-700'
                         }`}>
-                            I'm a passionate software engineering student at{' '}
-                            <span className="text-violet-500 font-semibold">
-                                Addis Ababa Science and Technology University (AASTU)
+                            {ABOUT_COPY.paragraphOne.intro}{' '}
+                            <span className="text-amber-500 font-semibold">
+                                {ABOUT_COPY.paragraphOne.school}
                             </span>
-                            . As a <span className="font-semibold">2025 AASTU Tech Fest 2nd place Hackathon Winner</span>,
-                            I've proven my ability to build innovative solutions under pressure.
+                            {ABOUT_COPY.paragraphOne.middle}{' '}
+                            <span className="font-semibold">{ABOUT_COPY.paragraphOne.highlight}</span>
+                            {ABOUT_COPY.paragraphOne.outro}
                         </p>
 
                         <p className={`text-lg leading-relaxed mb-8 ${
                             isDark ? 'text-gray-300' : 'text-gray-700'
                         }`}>
-                            As a <span className="text-blue-500 font-semibold">Team Leader</span> and{' '}
-                            <span className="text-violet-500 font-semibold">Code Enthusiast</span>, I'm always 
-                            hungry to build smarter tech. My expertise spans frontend, backend, mobile development,
-                            and AI-powered solutions.
+                            {ABOUT_COPY.paragraphTwo.intro}{' '}
+                            <span className="text-amber-500 font-semibold">{ABOUT_COPY.paragraphTwo.leader}</span> {ABOUT_COPY.paragraphTwo.middle}{' '}
+                            <span className="text-orange-500 font-semibold">{ABOUT_COPY.paragraphTwo.enthusiast}</span>, {ABOUT_COPY.paragraphTwo.outro}
                         </p>
 
                         {/* Achievements Stats Grid */}
-                        <h3 className="text-2xl font-semibold mb-4 text-blue-400 flex items-center gap-1">
-                            🚀 Achievements
+                        <h3 className="text-2xl font-semibold mb-4 text-orange-400 flex items-center gap-1">
+                            {ABOUT_COPY.achievementsTitle}
                         </h3>
                         <div className="grid grid-cols-2 gap-4 mb-8">
                             {ACHIEVEMENTS.map((achievement, index) => {
@@ -149,15 +150,15 @@ export function AboutSection() {
                                         whileHover={{ scale: 1.05, y: -5 }}
                                         className={`p-4 rounded-2xl border transition-all ${
                                             isDark 
-                                                ? 'bg-gray-800/50 border-gray-700 hover:border-violet-500/50' 
-                                                : 'bg-gray-50 border-gray-200 hover:border-violet-500/50'
+                                                ? 'bg-gray-800/50 border-gray-700 hover:border-amber-500/50' 
+                                                : 'bg-gray-50 border-gray-200 hover:border-amber-500/50'
                                         }`}
                                     >
                                         {Icon && <Icon className={`w-6 h-6 mb-2 ${
-                                            achievement.highlight ? 'text-amber-500' : 'text-violet-500'
+                                            achievement.highlight ? 'text-yellow-400' : 'text-amber-500'
                                         }`} />}
                                         <div className={`text-sm font-bold text-lg ${
-                                            isDark ? 'text-blue-400' : 'text-blue-900'
+                                            isDark ? 'text-amber-300' : 'text-amber-800'
                                         }`}>
                                             {achievement.title}
                                         </div>
@@ -186,8 +187,7 @@ export function AboutSection() {
                             viewport={{ once: true }}
                             className={`mb-6 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}
                         >
-                            Whether leading a team through tight deadlines or architecting scalable code, 
-                            My strong suits include team collaboration, project leadership, and delivering quality solutions under pressure.
+                            {ABOUT_COPY.summary}
                         </motion.p>
 
                         {/* CTA */}
@@ -201,12 +201,12 @@ export function AboutSection() {
                                 href={PERSONAL_INFO.resumeUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(139, 92, 246, 0.3)' }}
+                                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(245, 158, 11, 0.3)' }}
                                 whileTap={{ scale: 0.95 }}
-                                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg shadow-violet-500/25 hover:shadow-purple-500/40 transition-all"
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-xl font-semibold shadow-lg shadow-orange-500/25 hover:shadow-amber-400/40 transition-all"
                             >
                                 <FaDownload className="w-4 h-4" />
-                                Download Resume
+                                {ABOUT_COPY.resumeCta}
                             </motion.a>
                         </motion.div>
                     </motion.div>
