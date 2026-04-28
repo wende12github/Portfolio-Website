@@ -17,7 +17,7 @@ export const NAV_ITEMS: NavItem[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/wendmagegn-tajura/',
+    url: 'https://www.linkedin.com/in/wendmagegn-tajura-soft/',
     icon: Linkedin,
     color: 'hover:text-blue-600',
   },

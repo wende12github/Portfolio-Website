@@ -68,7 +68,7 @@ export default function RootLayout({
         jobTitle: "Full Stack & Mobile Developer",
         sameAs: [
           "https://github.com/wende12github",
-          "https://www.linkedin.com/in/wendmagegn-tajura/",
+          "https://www.linkedin.com/in/wendmagegn-tajura-soft/",
           "https://www.instagram.com/wende_9412/",
           "https://t.me/Mark_9412",
         ],
