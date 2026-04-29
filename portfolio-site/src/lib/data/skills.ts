@@ -11,10 +11,10 @@ export const SKILLS: SkillCategory[] = [
       skills: [
           { name: 'HTML5', icon: 'FaHtml5', level: 'expert' },
           { name: 'CSS3/Tailwind CSS', icon: 'CssAlt', level: 'expert' },
-          // { name: 'React.js', icon: 'React', level: 'expert' },
+        { name: 'React', icon: 'React', level: 'advanced' },
           { name: 'Next.js', icon: 'NextJs', level: 'advanced' },
           { name: 'TypeScript', icon: 'Ts', level: 'advanced' },
-          // { name: 'JavaScript', icon: 'FaJs', level: 'intermediate' },
+        { name: 'JavaScript', icon: 'Js', level: 'advanced' },
       ]
   },
 
@@ -25,9 +25,11 @@ export const SKILLS: SkillCategory[] = [
       iconColor: 'from-violet-500 to-purple-500',
       bgColor: 'bg-purple-900/30',
       skills: [
-          // { name: 'Node.js', icon: 'NodeJs', level: 'intermediate' },
+        { name: 'Node.js', icon: 'NodeJs', level: 'advanced' },
+        { name: 'Express', icon: 'Express', level: 'advanced' },
           { name: 'Python', icon: 'Python', level: 'expert' },
           { name: 'Django', icon: 'FaPython', level: 'advanced' },    
+        { name: 'REST APIs', icon: 'Api', level: 'advanced' },
           { name: 'PHP', icon: 'FaPhp', level: 'intermediate' },
           { name: 'Java', icon: 'FaJava', level: 'advanced' },
       ]
@@ -41,6 +43,7 @@ export const SKILLS: SkillCategory[] = [
     bgColor: 'bg-pink-900/30',
     skills: [
       { name: 'Flutter', icon: 'SiFlutter', level: 'expert' },
+      { name: 'Dart', icon: 'Dart', level: 'expert' },
       { name: 'React Native', icon: 'FaReact', level: 'intermediate' },
       { name: 'Java (Android)', icon: 'FaAndroid', level: 'advanced' },
     ],
@@ -53,6 +56,7 @@ export const SKILLS: SkillCategory[] = [
     iconColor: 'from-green-500 to-emerald-500',
     bgColor: 'bg-emerald-900/30',
     skills: [
+      { name: 'SQL', icon: 'Sql', level: 'advanced' },
       { name: 'PostgreSQL', icon: 'SiPostgresql', level: 'expert' },
       { name: 'MongoDB', icon: 'MongoDB', level: 'intermediate' },
       { name: 'Redis', icon: 'Redis', level: 'intermediate' },
@@ -90,6 +94,7 @@ export const SKILLS: SkillCategory[] = [
       { name: 'C++', icon: 'SiCplusplus', level: 'advanced' },
       { name: 'CI/CD', icon: 'GitAlt', level: 'advanced' },
       { name: 'Docker', icon: 'FaDocker', level: 'intermediate' },
+      { name: 'Postman', icon: 'Postman', level: 'advanced' },
     ],
   },
 
@@ -100,7 +105,10 @@ export const SKILLS: SkillCategory[] = [
     iconColor: 'from-green-500 to-emerald-500',
     bgColor: 'bg-emerald-900/30',
     skills: [
+      { name: 'Technical Leadership', icon: 'FaUserTie', level: 'advanced' },
+      { name: 'Agile/Scrum', icon: 'Agile', level: 'advanced' },
       { name: 'Project Management', icon: 'FaTasks', level: 'advanced' },
+      { name: 'Public Speaking', icon: 'Speaking', level: 'advanced' },
       { name: 'Problem Solving', icon: 'FaPuzzlePiece', level: 'expert' },
       { name: 'Communication', icon: 'FaComments', level: 'advanced' },
       { name: 'Leadership', icon: 'FaUserTie', level: 'advanced' },

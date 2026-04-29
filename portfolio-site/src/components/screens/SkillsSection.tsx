@@ -23,6 +23,11 @@ import {
     FaHandshake,
     FaBrain,
     FaRobot,
+    FaNodeJs,
+    FaDatabase,
+    FaLink,
+    FaSyncAlt,
+    FaMicrophone,
 } from "react-icons/fa";
 import {
     SiNextdotjs,
@@ -34,6 +39,11 @@ import {
     SiSupabase,
     SiFirebase,
     SiCplusplus,
+    SiDart,
+    SiExpress,
+    SiJavascript,
+    SiPostman,
+    SiRedis,
 } from "react-icons/si";
 
 
@@ -54,20 +64,28 @@ const skillIconMap: Record<string, React.ComponentType<{ className?: string; sty
     // Frontend
     FaHtml5: FaHtml5,
     CssAlt: FaCss3Alt,
+    React: FaReact,
     NextJs: SiNextdotjs,
     Ts: SiTypescript,
+    Js: SiJavascript,
     // Backend
     Python: FaPython,
     FaPython: FaPython,
+    NodeJs: FaNodeJs,
+    Express: SiExpress,
+    Api: FaLink,
     FaPhp: FaPhp,
     FaJava: FaJava,
     // Mobile
     SiFlutter: SiFlutter,
+    Dart: SiDart,
     FaReact: FaReact,
     FaAndroid: FaAndroid,
     // Databases
+    Sql: FaDatabase,
     SiPostgresql: SiPostgresql,
     MongoDB: SiMongodb,
+    Redis: SiRedis,
     Firebase: SiFirebase,
     Supabase: SiSupabase,
     // AI/ML
@@ -79,7 +97,10 @@ const skillIconMap: Record<string, React.ComponentType<{ className?: string; sty
     GitAlt: FaGitAlt,
     SiCplusplus: SiCplusplus,
     FaDocker: FaDocker,
+    Postman: SiPostman,
     // Soft skills
+    Agile: FaSyncAlt,
+    Speaking: FaMicrophone,
     FaTasks: FaTasks,
     FaPuzzlePiece: FaPuzzlePiece,
     FaComments: FaComments,
@@ -93,20 +114,28 @@ const skillBrandColor: Record<string, string> = {
     // Frontend
     FaHtml5: "#E34F26",
     CssAlt: "#1572B6",
+    React: "#61DAFB",
     NextJs: "#000000",
     Ts: "#3178C6",
+    Js: "#F7DF1E",
     // Backend
     Python: "#3776AB",
     FaPython: "#3776AB",
+    NodeJs: "#339933",
+    Express: "#111827",
+    Api: "#F59E0B",
     FaPhp: "#777BB4",
     FaJava: "#E76F00",
     // Mobile
     SiFlutter: "#02569B",
+    Dart: "#0175C2",
     FaReact: "#61DAFB",
     FaAndroid: "#3DDC84",
     // Databases
+    Sql: "#6B7280",
     SiPostgresql: "#336791",
     MongoDB: "#47A248",
+    Redis: "#DC382D",
     Firebase: "#FFCA28",
     Supabase: "#3ECF8E",
     // AI/ML
@@ -118,7 +147,10 @@ const skillBrandColor: Record<string, string> = {
     GitAlt: "#F1502F",
     SiCplusplus: "#00599C",
     FaDocker: "#2496ED",
+    Postman: "#FF6C37",
     // Soft skills (generic accent colors)
+    Agile: "#F59E0B",
+    Speaking: "#EF4444",
     FaTasks: "#22C55E",
     FaPuzzlePiece: "#3B82F6",
     FaComments: "#6B7280",
