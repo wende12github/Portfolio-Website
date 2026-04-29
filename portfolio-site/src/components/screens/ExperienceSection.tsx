@@ -4,7 +4,7 @@ import { FADE_IN_UP } from "@/lib/constants";
 import { EXPERIENCES } from "@/lib/data/experiences";
 import { motion } from "framer-motion";
 import { useIsDark } from "@/hooks/useIsDark";
-import { FaGraduationCap, FaMedal, FaQuoteLeft, FaTrophy } from "react-icons/fa";
+import { FaChalkboardTeacher, FaCode, FaGraduationCap, FaMedal, FaQuoteLeft, FaTrophy } from "react-icons/fa";
 
 
 // Icon map to dynamically render icons based on string names
@@ -12,6 +12,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
     FaTrophy,
     FaMedal,
     FaGraduationCap,
+    FaChalkboardTeacher,
+    FaCode,
 };
 
 export function ExperienceSection() {

@@ -11,9 +11,9 @@ export const HERO_COPY = {
     outro: "with a full-stack mindset and AI-powered thinking.",
   },
   story: {
-    intro: "A passionate software engineering student at AASTU.",
+    intro: "Software engineering student at AASTU and an A2SV Trainee.",
     highlight: "2025 AASTU Tech Fest Hackathon 2nd Place Winner,",
-    outro: "team leader, code enthusiast, and always hungry to build smarter tech.",
+    outro: "web development mentor (GDG on Campus AASTU), DSA-focused problem solver, and builder of scalable, AI-powered products.",
   },
   cta: {
     work: "View My Work",
@@ -35,15 +35,15 @@ export const ABOUT_COPY = {
     outro: ", I've proven my ability to build innovative solutions under pressure.",
   },
   paragraphTwo: {
-    intro: "As a",
-    leader: "Team Leader",
+    intro: "As an",
+    leader: "A2SV Trainee",
     middle: "and",
-    enthusiast: "Code Enthusiast",
-    outro: "I'm always hungry to build smarter tech. My expertise spans frontend, backend, mobile development, and AI-powered solutions.",
+    enthusiast: "Web Development Mentor (GDG AASTU)",
+    outro: "I stay consistent with DSA, ship full-stack products, and enjoy helping others grow. My focus spans Flutter, Next.js, Node.js, Django, and building scalable, AI-powered solutions.",
   },
   achievementsTitle: "🚀 Achievements",
   summary:
-    "Whether leading a team through tight deadlines or architecting scalable code, my strong suits include team collaboration, project leadership, and delivering quality solutions under pressure.",
+    "I thrive in agile environments where I can collaborate, lead with clarity, and turn ideas into reliable software, whether it's a Flutter app, a Next.js frontend, or a Django/Node backend.",
   resumeCta: "Download Resume",
 };
 
