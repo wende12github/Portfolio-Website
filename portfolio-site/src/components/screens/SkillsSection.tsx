@@ -1,10 +1,20 @@
 "use client";
 
 import { SKILLS } from "@/lib/data/skills";
-import { AnimatePresence, motion } from "framer-motion";
-import { Brain, Database, GitBranch, Palette, Server, Smartphone, Users } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+    Brain,
+    ChevronLeft,
+    ChevronRight,
+    Database,
+    GitBranch,
+    Palette,
+    Server,
+    Smartphone,
+    Users,
+} from "lucide-react";
 import { useIsDark } from "@/hooks/useIsDark";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import {
     FaHtml5,
@@ -49,14 +59,14 @@ import {
 
 // Map string icon names from SkillCategory to real lucide-react components
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Palette,
-  Server,
-  Smartphone,
-  Database,
-  Brain,
-  GitBranch,
-  // Fallback for legacy "FaUsers"
-  FaUsers: Users,
+    Palette,
+    Server,
+    Smartphone,
+    Database,
+    Brain,
+    GitBranch,
+    // Fallback for legacy "FaUsers"
+    FaUsers: Users,
 };
 
 // Map skill.icon strings from data to real react-icons components
@@ -158,30 +168,37 @@ const skillBrandColor: Record<string, string> = {
     FaHandshake: "#0EA5E9",
 };
 
-
-// Convert textual levels to progress percentages
-const levelToPercent: Record<
-    NonNullable<import("@/types").Skill["level"]>,
-    number
-> = {
-    beginner: 25,
-    intermediate: 50,
-    advanced: 75,
-    expert: 95,
-};
-
 export function SkillsSection(){
     const { isDark } = useIsDark();
 
-    const [activeCategory, setActiveCategory] = useState('frontend');
+    const categories = useMemo(() => SKILLS, []);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
 
-    const activeSkills = useMemo(
-        () => SKILLS.find((c) => c.id === activeCategory),
-        [activeCategory]
-    );
+    // Autoplay (3s), pauses on hover, loops infinitely
+    useEffect(() => {
+        if (isPaused || categories.length <= 1) return;
 
-    const ActiveIcon =
-    (activeSkills?.icon && iconMap[activeSkills.icon]) || Palette;
+        const timer: ReturnType<typeof setInterval> = setInterval(() => {
+            setActiveIndex((prev) => (prev + 1) % categories.length);
+        }, 3000);
+
+        return () => clearInterval(timer);
+    }, [isPaused, categories.length]);
+
+    const goPrev = () =>
+        setActiveIndex((prev) => (prev - 1 + categories.length) % categories.length);
+
+    const goNext = () =>
+        setActiveIndex((prev) => (prev + 1) % categories.length);
+
+    const getCircularOffset = (index: number) => {
+        const raw = index - activeIndex;
+        const half = Math.floor(categories.length / 2);
+        if (raw > half) return raw - categories.length;
+        if (raw < -half) return raw + categories.length;
+        return raw;
+    };
 
 
     return (
@@ -218,191 +235,154 @@ export function SkillsSection(){
                     <div className="w-24 h-1 bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-300 mx-auto rounded-full" />
                 </motion.div>
 
-                {/* Category Tabs */}
+                {/* 3D Perspective Horizontal Carousel */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="flex flex-wrap justify-center gap-3 mb-12"
+                    transition={{ duration: 0.6, delay: 0.05 }}
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                    className="relative max-w-6xl mx-auto"
                 >
-                    {SKILLS.map((category) => {
-                        const TabIcon =
-                            (category.icon && iconMap[category.icon]) || Palette;
-
-                        return (
-                            <motion.button
-                                key={category.id}
-                                onClick={() => setActiveCategory(category.id)}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className={`flex items-center gap-2 px-5 py-3 rounded-2xl font-medium transition-all ${
-                                activeCategory === category.id
-                                    ? `bg-gradient-to-r ${category.iconColor} text-white shadow-lg`
-                                    : isDark
-                                    ? "bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700"
-                                    : "bg-white text-gray-600 hover:text-gray-900 hover:bg-gray-100 shadow-sm"
-                                }`}
-                            >
-                                <TabIcon className="w-5 h-5" />
-                                {category.title}
-                            </motion.button>
-                        );
-                    })}
-                </motion.div>
-
-                {/* Skills Display */}
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={activeCategory}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3 }}
-                        className={`max-w-3xl mx-auto p-8 rounded-3xl ${
-                        isDark ? "bg-gray-900/50" : "bg-white shadow-xl"
+                    {/* Navigation arrows */}
+                    <button
+                        type="button"
+                        onClick={goPrev}
+                        aria-label="Previous skill category"
+                        className={`absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full grid place-items-center border transition-colors ${
+                            isDark
+                                ? "bg-gray-900/70 border-gray-700 text-white hover:bg-gray-800"
+                                : "bg-white/90 border-gray-200 text-gray-900 hover:bg-gray-50"
                         }`}
                     >
-                        {activeSkills && (
-                        <>
-                            <div className="flex items-center gap-3 mb-8">
-                            <div
-                                className={`p-3 rounded-xl bg-gradient-to-r ${activeSkills.iconColor}`}
-                            >
-                                <ActiveIcon className="w-6 h-6 text-white" />
-                            </div>
-                            <h3
-                                className={`text-2xl font-bold ${
-                                isDark ? "text-white" : "text-gray-900"
-                                }`}
-                            >
-                                {activeSkills.title}
-                            </h3>
-                            </div>
+                        <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                        type="button"
+                        onClick={goNext}
+                        aria-label="Next skill category"
+                        className={`absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full grid place-items-center border transition-colors ${
+                            isDark
+                                ? "bg-gray-900/70 border-gray-700 text-white hover:bg-gray-800"
+                                : "bg-white/90 border-gray-200 text-gray-900 hover:bg-gray-50"
+                        }`}
+                    >
+                        <ChevronRight className="w-5 h-5" />
+                    </button>
 
-                            <div className="space-y-6">
-                            {activeSkills.skills.map((skill, index) => {
-                                const percent =
-                                levelToPercent[skill.level ?? "beginner"];
-                                const SkillIcon = skill.icon ? skillIconMap[skill.icon] : undefined;
-                                const brandColor = skill.icon ? skillBrandColor[skill.icon] : undefined;
+                    {/* Cards stage */}
+                    <motion.div
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={0.15}
+                        onDragEnd={(_, info) => {
+                            if (info.offset.x < -80) goNext();
+                            if (info.offset.x > 80) goPrev();
+                        }}
+                        style={{ perspective: "1000px" }}
+                        className="relative h-[420px] sm:h-[440px] overflow-x-hidden flex items-center justify-center"
+                    >
+                        {categories.map((category, index) => {
+                            const offset = getCircularOffset(index);
+                            const isActive = offset === 0;
+                            const rotateY = isActive ? 0 : offset > 0 ? -25 : 25;
+                            const scale = isActive ? 1 : 0.8;
+                            const opacity = isActive ? 1 : 0.6;
+                            const zIndex = isActive ? 10 : 10 - Math.abs(offset);
+                            const x = offset * 260;
 
-                                return (
-                                <motion.div
-                                    key={skill.name}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: index * 0.1 }}
+                            const CategoryIcon =
+                                (category.icon && iconMap[category.icon]) || Palette;
+
+                            return (
+                                <motion.article
+                                    key={category.id}
+                                    onClick={() => setActiveIndex(index)}
+                                    aria-label={`Skill category: ${category.title}`}
+                                    className={`absolute left-1/2 -translate-x-1/2 w-[320px] sm:w-[420px] h-[360px] sm:h-[400px] cursor-pointer select-none rounded-3xl border p-8 sm:p-10 flex flex-col ${
+                                        isDark
+                                            ? "bg-gray-700/60 border-gray-800"
+                                            : "bg-white border-gray-100 shadow-xl"
+                                    }`}
+                                    initial={false}
+                                    animate={{
+                                        x,
+                                        rotateY,
+                                        scale,
+                                        opacity,
+                                        zIndex,
+                                    }}
+                                    transition={{
+                                        duration: 0.5,
+                                        ease: [0.4, 0, 0.2, 1],
+                                    }}
+                                    style={{ transformStyle: "preserve-3d" }}
                                 >
-                                    <div className="flex items-center justify-between mb-2">
-                                        <div className="flex items-center gap-2">
-                                            {SkillIcon && (
-                                                <SkillIcon
-                                                    className="w-5 h-5"
-                                                    style={{ color: brandColor ?? (isDark ? '#8B5CF6' : '#7C3AED') }}
-                                                />
-                                            )}
-                                            <span
-                                                className={`font-medium ${
-                                                    isDark ? "text-gray-300" : "text-gray-700"
+                                    <div className="flex items-center gap-3 mb-5">
+                                        <div
+                                            className={`p-3 rounded-2xl bg-gradient-to-r ${category.iconColor}`}
+                                        >
+                                            <CategoryIcon className="w-6 h-6 text-white" />
+                                        </div>
+                                        <div>
+                                            <h3
+                                                className={`text-xl font-bold ${
+                                                    isDark ? "text-white" : "text-gray-900"
                                                 }`}
                                             >
-                                                {skill.name}
-                                            </span>
+                                                {category.title}
+                                            </h3>
+                                            <p
+                                                className={`text-sm ${
+                                                    isDark ? "text-gray-400" : "text-gray-600"
+                                                }`}
+                                            >
+                                                {category.skills.length} skills
+                                            </p>
                                         </div>
-                                        <span
-                                            className={`text-sm ${
-                                                isDark ? "text-gray-500" : "text-gray-400"
-                                            }`}
-                                        >
-                                            {skill.level}
-                                        </span>
                                     </div>
-                                    <div
-                                    className={`h-3 rounded-full overflow-hidden ${
-                                        isDark ? "bg-gray-800" : "bg-gray-200"
-                                    }`}
-                                    >
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        animate={{ width: `${percent}%` }}
-                                        transition={{
-                                        duration: 1,
-                                        delay: index * 0.1,
-                                        ease: "easeOut",
-                                        }}
-                                        className={`h-full rounded-full bg-gradient-to-r ${activeSkills.iconColor}`}
-                                    />
+
+                                    <div className="flex-1 min-h-0 overflow-x-auto overflow-y-hidden columns-[170px] sm:columns-[190px] [column-gap:0.75rem]">
+                                        {category.skills.map((skill) => {
+                                            const SkillIcon = skill.icon
+                                                ? skillIconMap[skill.icon]
+                                                : undefined;
+                                            const brandColor = skill.icon
+                                                ? skillBrandColor[skill.icon]
+                                                : undefined;
+
+                                            return (
+                                                <div key={skill.name} className="break-inside-avoid mb-2">
+                                                    <div
+                                                        className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm border ${
+                                                            isDark
+                                                                ? "bg-gray-800/60 border-gray-700 text-gray-200"
+                                                                : "bg-gray-50 border-gray-200 text-gray-700"
+                                                        }`}
+                                                    >
+                                                        {SkillIcon && (
+                                                            <SkillIcon
+                                                                className="w-4 h-4"
+                                                                style={{
+                                                                    color:
+                                                                        brandColor ??
+                                                                        (isDark
+                                                                            ? "#F59E0B"
+                                                                            : "#D97706"),
+                                                                }}
+                                                            />
+                                                        )}
+                                                        <span className="leading-none">{skill.name}</span>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
                                     </div>
-                                </motion.div>
-                                );
-                            })}
-                            </div>
-                        </>
-                        )}
+                                </motion.article>
+                            );
+                        })}
                     </motion.div>
-                </AnimatePresence>
-
-                {/* All Skills Overview */}
-                <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="mt-16 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4"
-                >
-                    {SKILLS.map((category, index) => {
-                        const GridIcon =
-                        (category.icon && iconMap[category.icon]) || Palette;
-
-                        return (
-                        <motion.div
-                            key={category.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            whileHover={{ scale: 1.05, y: -5 }}
-                            onClick={() => setActiveCategory(category.id)}
-                            className={`p-6 rounded-2xl text-center cursor-pointer transition-all border ${
-                            activeCategory === category.id
-                                ? `bg-gradient-to-r ${category.iconColor} border-transparent`
-                                : isDark
-                                ? "bg-gray-800 border-gray-800 hover:border-amber-500/50"
-                                : "bg-white border-gray-200 hover:border-amber-500/50 shadow-sm"
-                            }`}
-                        >
-                            <GridIcon
-                            className={`w-8 h-8 mx-auto mb-3 ${
-                                activeCategory === category.id
-                                ? "text-white"
-                                : "text-amber-500"
-                            }`}
-                            />
-                            <h4
-                            className={`font-semibold text-sm ${
-                                activeCategory === category.id
-                                ? "text-white"
-                                : isDark
-                                ? "text-gray-300"
-                                : "text-gray-700"
-                            }`}
-                            >
-                            {category.title}
-                            </h4>
-                            <p
-                            className={`text-xs mt-1 ${
-                                activeCategory === category.id
-                                ? "text-white/80"
-                                : isDark
-                                ? "text-gray-500"
-                                : "text-gray-400"
-                            }`}
-                            >
-                            {category.skills.length} skills
-                            </p>
-                        </motion.div>
-                        );
-                    })}
                 </motion.div>
             </div>
         </section>
